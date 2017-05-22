@@ -1,6 +1,16 @@
-header {
-  
+body {
+  font-family: 'Bitter', serif;
+}
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
 }
 main {
-
+  margin-top: 60px;
+}
+section:not(#home) {
+  display: none;
+}
+.sub-page {
+  &:extend(.w3-animate-top);
+  display: none;
 }
