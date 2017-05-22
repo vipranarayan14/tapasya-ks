@@ -3,8 +3,8 @@
   <a href="#home" class="logo">
     Tapasya Kala Sampradaya
   </a>
-  <nav>
-    <a href="#home" class="w3-green">Home</a>
+  <nav class="w3-right">
+    <a href="#home" class="w3-bar-item w3-button w3-green">Home</a>
     <div class="w3-dropdown-hover">
       <button class="w3-button">About</button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -21,7 +21,7 @@
         <a href="#current-projects" class="w3-bar-item w3-button">Current Projects</a>
       </div>
     </div>
-    <a href="#contact">Contact</a>
+    <a href="#contact" class="w3-bar-item w3-button">Contact</a>
   </nav>
 </div>
 </header>

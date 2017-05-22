@@ -2,12 +2,22 @@ header {
   &:extend(.w3-top);
   &:extend(.w3-white);
   &:extend(.w3-card-2);
+
   .logo {
-    &:extend(.w3-bar .w3-bar-item);
-    font-family: Montserrat;
-    font-weight: 400;
-    font-size: 20px;
-    padding: 0 0;
-    text-decoration: none;
+      &:extend(.w3-bar .w3-bar-item);
+      font-family: Montserrat;
+      font-weight: 400;
+      font-size: 20px;
+      padding: 0 0;
+      text-decoration: none;
+  }
+
+  nav {
+    &:extend(.w3-right);
+
+    > a {
+      &:extend(.w3-bar .w3-bar-item);
+      &:extend(.w3-button );
+    }
   }
 }
