@@ -1,5 +1,5 @@
 const navBtns = document.querySelectorAll('header a');
-const allSections = document.querySelectorAll('section');
+const allSections = document.querySelectorAll('.page');
 const allSubpages = document.querySelectorAll('.sub-page');
 const allDropdowns = document.querySelectorAll('.w3-dropdown-hover');
 
