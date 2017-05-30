@@ -1,7 +1,8 @@
-const navBtns = document.querySelectorAll('header a');
+const navBtns = document.querySelectorAll('header a:not(.logo)');
 const allSections = document.querySelectorAll('.page');
 const allSubpages = document.querySelectorAll('.sub-page');
-const allDropdowns = document.querySelectorAll('.w3-dropdown-hover');
+const allDropdowns = document.querySelectorAll('.p-dropdown');
+const hiliteClass = "w3-green";
 
 for (let i = 0, length = navBtns.length; i < length; i++) {
 
@@ -47,22 +48,22 @@ function hideAllPagesAndSubpages() {
 
 function highlightNavBtn(ele) {
 
-  const headerActiveLinks = document.querySelectorAll('header .w3-green');
+  const headerActiveLinks = document.querySelectorAll('header .' + hiliteClass);
 
   for (let i = 0, length = headerActiveLinks.length; i < length; i++) {
 
-    headerActiveLinks[i].classList.remove('w3-green');
+    headerActiveLinks[i].classList.remove(hiliteClass);
   }
 
-  ele.classList.add('w3-green');
+  ele.classList.add(hiliteClass);
 
   for (let i = 0, length = allDropdowns.length; i < length; i++) {
 
-    const isActive = allDropdowns[i].querySelector('.w3-green') !== null;
+    const isActive = allDropdowns[i].querySelector('.' + hiliteClass) !== null;
 
     if(isActive) {
 
-      allDropdowns[i].querySelector('button').classList.add('w3-green');
+      allDropdowns[i].querySelector('.p-dropdown-btn').classList.add(hiliteClass);
     }
     
   }
