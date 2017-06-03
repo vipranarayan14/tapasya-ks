@@ -1,4 +1,4 @@
-const navBtns = document.querySelectorAll('header a:not(.logo)');
+const navBtns = document.querySelectorAll('header a');
 const allSections = document.querySelectorAll('.page');
 const allSubpages = document.querySelectorAll('.sub-page');
 const allDropdowns = document.querySelectorAll('.p-dropdown');
@@ -79,16 +79,19 @@ function highlightNavBtn(ele) {
     headerActiveLinks[i].classList.remove(hiliteClass);
   }
 
-  ele.classList.add(hiliteClass);
+  if (!ele.classList.contains('logo-text')) {
 
-  for (let i = 0, length = allDropdowns.length; i < length; i++) {
+    ele.classList.add(hiliteClass);
 
-    const isActive = allDropdowns[i].querySelector('.' + hiliteClass) !== null;
+    for (let i = 0, length = allDropdowns.length; i < length; i++) {
 
-    if (isActive) {
+      const isActive = allDropdowns[i].querySelector('.' + hiliteClass) !== null;
 
-      allDropdowns[i].querySelector('.p-dropdown-btn').classList.add(hiliteClass);
+      if (isActive) {
+
+        allDropdowns[i].querySelector('.p-dropdown-btn').classList.add(hiliteClass);
+      }
+
     }
-
   }
 }
