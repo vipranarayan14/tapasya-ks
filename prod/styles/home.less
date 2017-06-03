@@ -6,6 +6,7 @@
   .feather-img-container {
     &:extend(.w3-display-right);
     height: 100%;
+    opacity: 0.6;
 
     img {
       height:auto;
@@ -16,20 +17,33 @@
 
   .intro-container {
     &:extend(.w3-display-left);
-    &:extend(.w3-margin-left);
     &:extend(.w3-center);
-    width: 60%;
+    width: 100%;
 
     h1 {
-      &:extend(.w3-jumbo);
-      color: #daa520;
+      color: #ffb600;
+      font-size: 3em;
       font-weight: 700;
       line-height: 1.06;
     }
 
     .subtitle {
       &:extend(.w3-xlarge);
-      color: #6b8e23;
+      color: #8a4200;
+    }
+    .description {
+      text-align: center;
+    }
+  }
+}
+@media only screen and (min-width: 700px) {
+  #home {
+    .intro-container {
+      width: 60%;
+      margin-left: 16px;
+      h1 {
+        font-size: 4em;
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 body {
   font-family: 'Bitter', serif;
+  font-size: 16px;
 }
 h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
@@ -10,10 +11,7 @@ main {
 textarea:focus, input:focus{
     outline: none;
 }
-.page:not(#home) {
-  display: none;
-}
-.sub-page {
+.page:not(#home), .sub-page {
   &:extend(.w3-animate-top);
   display: none;
 }
@@ -23,9 +21,9 @@ textarea:focus, input:focus{
   height: 400px;
   h1 {
     &:extend(.w3-display-bottommiddle);
-    &:extend(.w3-jumbo);
     &:extend(.w3-padding);
     &:extend(.w3-text-white);
+    font-size: 2em;
     font-weight: 700;
     background: rgba(0, 0, 0, 0.6);
   }
@@ -34,5 +32,12 @@ textarea:focus, input:focus{
   color: #212121;
   width: 80%;
   margin: 0 auto;
-  text-align: center;
+  text-align: justify;
+}
+@media only screen and (min-width: 700px){
+  .banner {
+    h1 {
+      font-size: 4em;
+    }
+  }
 }

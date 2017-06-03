@@ -12,7 +12,10 @@ for (let i = 0, length = navBtns.length; i < length; i++) {
     e.preventDefault();
     highlightNavBtn(navBtns[i]);
     showElement(navBtns[i].getAttribute('href'));
-    toggleNav();
+
+    if (!window.matchMedia("(min-width:700px)").matches) {
+      toggleNav();
+    }
   });
 }
 
@@ -23,7 +26,7 @@ for (let i = 0, length = allDropdowns.length; i < length; i++) {
     e.preventDefault();
     // resetAllDDs();
     e.target.classList.toggle('active');
-    e.target.nextElementSibling.classList.toggle('active');
+    allDropdowns[i].querySelector('.p-dropdown-content').classList.toggle('active');
   });
 }
 menuIcon.addEventListener('click', (e) => {
