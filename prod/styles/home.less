@@ -1,10 +1,24 @@
 #home {
   .home-banner {
-    height: 500px;
+    &:extend(.w3-display-container);
+    height: 400px;
     position: relative;
     z-index: 1;
     text-align: center;
-    display: table;
+    div {
+      &:extend(.w3-display-middle);
+      width: fit-content;
+      h1 {
+        color: #ffb600;
+        font-size: 3em;
+        font-weight: 700;
+        line-height: 1.06;
+      }
+      h2 {
+        &:extend(.w3-xlarge);
+        color: #8a4200;
+      }
+    }
   }
   .home-banner::before {
     content: "";
@@ -15,44 +29,29 @@
     height: 100%;
     opacity: .4;
     z-index: -1;
-    background-image: url('images/feather-with-slogan3.png');
+    background-image: url('images/feather-with-slogan.jpg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
   }
-  .intro-container {
+  .description {
+    padding-top: 20px;
     text-align: center;
-    width: 100%;
-    position: relative;
-    display: table-cell;
-
-    h1 {
-      color: #ffb600;
-      font-size: 3em;
-      font-weight: 700;
-      line-height: 1.06;
-    }
-
-    .subtitle {
-      &:extend(.w3-xlarge);
-      color: #8a4200;
-    }
-    .description {
-      text-align: center;
-    }
   }
 }
 
 @media only screen and (min-width: 700px) {
   #home {
-    .home-banner::before {
-      background-position: right;
-    }
-    .intro-container {
-      vertical-align: middle;
-      h1 {
-        font-size: 4em;
+    .home-banner {
+      div {
+        vertical-align: middle;
+        h1 {
+          font-size: 4em;
+        }
       }
+    }
+    .description {
+      width: 40%;
     }
   }
 }
