@@ -41,7 +41,11 @@ header.small {
     display: none;
 
     &.nav-open {
+      &:extend(.w3-animate-top);
+      position: relative;
+      z-index: -1;
       display: block;
+      overflow-y: auto;
     }
 
     ul {
