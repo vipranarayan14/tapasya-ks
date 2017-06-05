@@ -1,38 +1,65 @@
 body {
   font-family: 'Bitter', serif;
+  font-size: 16px;
 }
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
   font-family: 'Montserrat', sans-serif;
 }
+
 main {
-  margin-top: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
-textarea:focus, input:focus{
-    outline: none;
+
+textarea:focus,
+input:focus {
+  outline: none;
 }
-.page:not(#home) {
-  display: none;
-}
+
+.page:not(#home),
 .sub-page {
   &:extend(.w3-animate-top);
   display: none;
 }
+
+.page .banner,
+.sub-page .banner {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .banner {
   &:extend(.w3-display-container);
-  background-color: #4CAF50;
+  background-color: #a5e2a7;
   height: 400px;
   h1 {
     &:extend(.w3-display-bottommiddle);
-    &:extend(.w3-jumbo);
     &:extend(.w3-padding);
-    &:extend(.w3-text-white);
+    color: #fff;
+    text-align: center;
+    font-size: 2em;
     font-weight: 700;
     background: rgba(0, 0, 0, 0.6);
   }
 }
+
 .description {
   color: #212121;
   width: 80%;
   margin: 0 auto;
-  text-align: center;
+  text-align: justify;
+}
+
+@media only screen and (min-width: 700px) {
+  main {
+    margin-top: 72px;
+  }
+  .banner {
+    h1 {
+      font-size: 4em;
+    }
+  }
 }

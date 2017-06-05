@@ -1,14 +1,28 @@
 #research {
   .banner {
-    background: url('images/main/Research3.jpg');
+    background-image: url('images/main/Research3.jpg');
     background-position: center center;
-    background-size: cover;
   }
 }
+
 #reconstruction {
   .banner {
-    background: url('images/main/Reconstruction1.jpg');
+    background-image: url('images/main/Reconstruction1.jpg');
     background-position: right center;
-    background-size: cover;
+  }
+}
+
+#current-projects {
+  .banner {
+    background-color: #fff;
+    background-image: url('images/main/Currentprojects.jpg');
+    background-position: center center;
+    h1 {
+      &:extend(.w3-display-middle);
+      bottom: auto;
+    }
+  }
+  .description {
+    text-align: center;
   }
 }

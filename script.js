@@ -1,7 +1,8 @@
-const navBtns = document.querySelectorAll('header a:not(.logo)');
+const navBtns = document.querySelectorAll('header a');
 const allSections = document.querySelectorAll('.page');
 const allSubpages = document.querySelectorAll('.sub-page');
 const allDropdowns = document.querySelectorAll('.p-dropdown');
+const menuIcon = document.querySelector('.menu-icon');
 const hiliteClass = "w3-green";
 
 for (let i = 0, length = navBtns.length; i < length; i++) {
@@ -11,9 +12,32 @@ for (let i = 0, length = navBtns.length; i < length; i++) {
     e.preventDefault();
     highlightNavBtn(navBtns[i]);
     showElement(navBtns[i].getAttribute('href'));
-  })
+
+    if (!window.matchMedia("(min-width:700px)").matches) {
+      toggleNav();
+    }
+  });
 }
 
+for (let i = 0, length = allDropdowns.length; i < length; i++) {
+
+  allDropdowns[i].querySelector('.p-dropdown-btn').addEventListener('click', (e) => {
+
+    e.preventDefault();
+    // resetAllDDs();
+    e.target.classList.toggle('active');
+    allDropdowns[i].querySelector('.p-dropdown-content').classList.toggle('active');
+  });
+}
+menuIcon.addEventListener('click', (e) => {
+  e.preventDefault();
+  toggleNav();
+});
+
+function toggleNav() {
+  document.querySelector('header').classList.toggle('nav-open');
+  document.querySelector('nav').classList.toggle('nav-open');
+}
 function showElement(eleId) {
 
   const ele = document.querySelector(eleId);
@@ -55,16 +79,19 @@ function highlightNavBtn(ele) {
     headerActiveLinks[i].classList.remove(hiliteClass);
   }
 
-  ele.classList.add(hiliteClass);
+  if (!ele.classList.contains('logo-text')) {
 
-  for (let i = 0, length = allDropdowns.length; i < length; i++) {
+    ele.classList.add(hiliteClass);
 
-    const isActive = allDropdowns[i].querySelector('.' + hiliteClass) !== null;
+    for (let i = 0, length = allDropdowns.length; i < length; i++) {
 
-    if(isActive) {
+      const isActive = allDropdowns[i].querySelector('.' + hiliteClass) !== null;
 
-      allDropdowns[i].querySelector('.p-dropdown-btn').classList.add(hiliteClass);
+      if (isActive) {
+
+        allDropdowns[i].querySelector('.p-dropdown-btn').classList.add(hiliteClass);
+      }
+
     }
-    
   }
 }
