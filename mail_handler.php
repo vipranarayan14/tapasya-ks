@@ -3,14 +3,17 @@ if(isset($_POST['email'])) {
  
     // EDIT THE 2 LINES BELOW AS REQUIRED
     $email_to = "vipranarayan14@gmail.com";
-    $email_subject = "TKS Website Visitor";
+    $email_subject = "A Message from TKS Website visitor!";
  
     function died($error) {
         // your error code can go here
+        echo "<center>";
         echo "<p>We are very sorry, but there were some error(s) found with the form you submitted.</p>";
         echo "<p>These errors appear below.</p> <ul>";
         echo "<li>".$error."</li>";
-        echo "</ul> <p>Please go back and fix these errors.<p> <br><br>";
+        echo "</ul> <p>Please go back and fix these errors.<p>";
+        echo "<button onclick="window.history.back()">Go Back</button>";
+        echo "</center>";
         die();
     }
  
@@ -59,9 +62,9 @@ if(isset($_POST['email'])) {
  
      
  
-    $email_message .= "Name: ".clean_string($full_name)."\n";
-    $email_message .= "Email: ".clean_string($email_from)."\n";
-    $email_message .= "Message: ".clean_string($message)."\n";
+    $email_message .= "<b>Name:</b> ".clean_string($full_name)."\n";
+    $email_message .= "<b>Email:</b> ".clean_string($email_from)."\n";
+    $email_message .= "<b>Message:</b> <br>".clean_string($message)."\n";
  
 // create email headers
 $headers = 'From: '.$email_from."\r\n".
@@ -72,9 +75,14 @@ $headers = 'From: '.$email_from."\r\n".
  
 <!-- include your own success html here -->
  
-<p><center>Thank you for contacting us. We will be in touch with you very soon.</center></p>
+<p>
+  <center>
+  Thank you for contacting us. We will be in touch with you very soon.
+  <button onclick="window.history.back()">Go Back</button>
+  </center>
+</p>
  
-<?php
- 
+<?php 
+
 }
 ?>
