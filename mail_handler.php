@@ -50,7 +50,7 @@ if (isset($_POST['email'])) {
     }
     
     $email_message = "<html><body>";
-    $email_message .= "<h2>Message details</h1><hr>";
+    $email_message .= "<h2>Message Details</h2><hr>";
     
     function clean_string($string)
     {
@@ -82,8 +82,8 @@ if (isset($_POST['email'])) {
  
 <p>
   <center>
-  Thank you for contacting us. We will be in touch with you very soon.
-  <br>
+  <h1>Thank you for contacting us. We will be in touch with you very soon.</h1>
+  <br><br>
   <button onclick="window.history.back()">Go Back</button>
   </center>
 </p>
