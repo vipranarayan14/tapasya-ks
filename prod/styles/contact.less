@@ -1,13 +1,14 @@
 #contact {
   &:extend(.w3-display-container);
   height: 500px;
-  background-image: url('images/main/contact.jpg');
+  background-image: url('images/main/banners-bg/contact.jpg');
   background-position: center center;
   background-size: cover;
+
   .description {
     &:extend(.w3-display-middle);
-    height: 60%;
     background: rgba(0, 0, 0, 0.6);
+    
     h1 {
       color: #fff;
       text-align: center;
@@ -15,33 +16,48 @@
       font-weight: 700;
     }
   }
-  input,
-  textarea {
-    &::-webkit-input-placeholder {
-      /* WebKit, Blink, Edge */
-      color: #fff;
+  form {
+    &:extend(.w3-padding);
+
+    .input-text, input[type='submit'] {
+      &:extend(.w3-input);
     }
-    &:-moz-placeholder {
-      /* Mozilla Firefox 4 to 18 */
+
+    .input-text {
+      &:extend(.w3-transparent);
+
+      &::-webkit-input-placeholder {
+
+        /* WebKit, Blink, Edge */
+        color: #fff;
+      }
+      &:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #fff;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #fff;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #fff;
+      }
+      &::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: #fff;
+      }
+      margin: 10px 0;
       color: #fff;
-      opacity: 1;
+      resize: none;
     }
-    &::-moz-placeholder {
-      /* Mozilla Firefox 19+ */
-      color: #fff;
-      opacity: 1;
+
+    input[type='submit'] {
+      background-color: #ddd;
+      border-color: #ddd;
     }
-    &:-ms-input-placeholder {
-      /* Internet Explorer 10-11 */
-      color: #fff;
-    }
-    &::-ms-input-placeholder {
-      /* Microsoft Edge */
-      color: #fff;
-    }
-    margin: 10px 0;
-    color: #fff;
-    resize: none;
   }
 }
 

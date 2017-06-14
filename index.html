@@ -137,13 +137,13 @@
         the vision of preserving India’s original cultural heritage.
       </p>
       <p>
-        Indu was part of the research team of Marainduvarum Marabugal, Tapasya’s Research documentary funded in part by India Foundation
+        Indu was part of the research team of Marainduvarum Marabugal, Tapasya’s research documentary funded in part by India Foundation
         for the Arts, Bangalore. Indu has helped reconstruct several compositions from the temple and court repertoire under
         the guidance of senior resource persons from hereditary families. She has performed widely within India and abroad
         and has trained several students in traditional Bharatanatyam. She also interacts extensively with students from
-        schools and colleges in her quest to create awareness on the need to preserve traditional heritage. Indu was a member
-        of the Board of Studies Faculty of Dance University of Madras (2008-2010). She has also authored and published books
-        and articles on traditional culture and spirituality.
+        schools and colleges in her quest to create awareness on the need to preserve traditional heritage. A former member
+        of the Board of Studies, Faculty of Dance, University of Madras, Indu has authored and published books and articles
+        on traditional culture and spirituality.
       </p>
     </div>
   </div>
@@ -177,12 +177,12 @@
     <div class="description">
       <p>
         The Tapasya team has reconstructed several compositions from the temple and court repertoire. The Tyagesa Kuravanji and the
-        Palikki Seva Prabhandam were performed at the Tiruvarur Temple under the guidance of Smt P.R.Thilakam a Padmasri
+        Palikki Seva Prabhandam were performed at the Tiruvarur Temple under the guidance of Smt P. R. Thilakam a Padmasri
         Awardee.
       </p>
       <p>
         Similar efforts under the guidance of Guru Kittappa Pillai and Pandanallur Gopalakrishnan include the temple traditions of
-        the Navasandhi Kautovams and the Sarvendra Bhupala Kuravanci and several rare compositions of the Tanjore Quartet.
+        the Navasandhi Kauthuvams and the Sarvendra Bhupala Kuravanji and several rare compositions of the Tanjore Quartet.
       </p>
     </div>
   </div>
@@ -200,10 +200,11 @@
     <section id="contact" class="page">
   <div class="description">
     <h1>Contact Us</h1>
-    <form class="w3-padding">
-      <input type="text" class="w3-transparent w3-input" placeholder="Name">
-      <input type="text" class="w3-transparent w3-input" placeholder="Email">
-      <textarea placeholder="Message" class="w3-transparent w3-input" maxlength="300"></textarea>
+    <form name="contact-form" method="post" action="mail_handler.php">
+      <input class="input-text" type="text" placeholder="Name" name="full_name" required>
+      <input class="input-text" type="email" placeholder="Email" name="email" required>
+      <textarea class="input-text" placeholder="Message" maxlength="300" name="message" required></textarea>
+      <input type="submit" value="Submit">
     </form>
   </div>
 </section>
