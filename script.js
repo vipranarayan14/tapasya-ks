@@ -1,10 +1,16 @@
 const navBtns = document.querySelectorAll('header a');
-const allSections = document.querySelectorAll('.page');
+const allPages = document.querySelectorAll('.page');
 const allSubpages = document.querySelectorAll('.sub-page');
 const allDropdowns = document.querySelectorAll('.p-dropdown');
 const menuIcon = document.querySelector('.menu-icon');
 const hiliteClass = "w3-green";
 
+window.addEventListener('load', () => {
+  const reqHash = location.hash;
+  if (reqHash) {
+    showElement(reqHash);
+  }
+})
 for (let i = 0, length = navBtns.length; i < length; i++) {
 
   navBtns[i].addEventListener('click', (e) => {
@@ -59,9 +65,9 @@ function showElement(eleId) {
 
 function hideAllPagesAndSubpages() {
 
-  for (let i = 0, length = allSections.length; i < length; i++) {
+  for (let i = 0, length = allPages.length; i < length; i++) {
 
-    allSections[i].style.display = 'none';
+    allPages[i].style.display = 'none';
   }
 
   for (let i = 0, length = allSubpages.length; i < length; i++) {
