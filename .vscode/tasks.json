@@ -1,0 +1,30 @@
+{
+    "version": "0.1.0",
+    "isShellCommand": true,
+    "showOutput": "silent",
+    "args": [],
+
+    "tasks": [
+        {
+            "taskName": "Fuse HTMLs",
+            "suppressTaskName": true,
+            "isBuildCommand": true,
+            "command": "fuse",
+            "args": ["-i", "prod/index.html", "-o", "index.html"]
+        },
+        {
+            "taskName": "Complie LESSs",
+            "suppressTaskName": true,
+            "isBuildCommand": true,
+            "command": "lessc",
+            "args": ["--clean-css", "prod/styles/index.less", "styles.css"]
+        },
+        {
+            "taskName": "Uglify JSs",
+            "suppressTaskName": true,
+            "isBuildCommand": true,
+            "command": "uglifyjs",
+            "args": ["prod/scripts/main.js", "prod/scripts/hash-router.js", "--compress", "--mangle", "-o", "script.min.js"]
+        }
+    ]
+}
