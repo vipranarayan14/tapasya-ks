@@ -20,15 +20,15 @@
   </div>
   <nav>
     <ul>
-      <li><a href="#home" class="w3-green">Home</a></li>
+      <li><a href="#home" class="navLink w3-green">Home</a></li>
       <li class="p-dropdown">
         <span class="p-dropdown-btn">About 
           <span class="p-dropdown-arrow">&#11167;</span>
         </span>
         <div class="p-dropdown-content">
-          <a href="#the-organisation">The Organisation</a>
-          <a href="#our-objectives">Our Objectives</a>
-          <a href="#the-director">The Director</a>
+          <a class="navLink" href="#the-organisation">The Organisation</a>
+          <a class="navLink" href="#our-objectives">Our Objectives</a>
+          <a class="navLink" href="#the-director">The Director</a>
         </div>
       </li>
       <li class="p-dropdown">
@@ -36,12 +36,12 @@
           <span class="p-dropdown-arrow">&#11167;</span>
         </span>
         <div class="p-dropdown-content">
-          <a href="#research">Research</a>
-          <a href="#reconstruction">Reconstruction</a>
-          <a href="#current-projects">Current Projects</a>
+          <a class="navLink" href="#research">Research</a>
+          <a class="navLink" href="#reconstruction">Reconstruction</a>
+          <a class="navLink" href="#current-projects">Current Projects</a>
         </div>
       </li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a class="navLink" href="#contact">Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -73,16 +73,18 @@
   </nav>
 </header>
   <main>
-    <section id="home" class="page">
-  <div class="home-banner">
-    <div>
-      <h1>Tapasya Kala Sampradaya</h1>
-      <h2>Where art is offering...</h2>
+    <section class="page">
+  <div id="home" class="sub-page">
+    <div class="home-banner">
+      <div>
+        <h1>Tapasya Kala Sampradaya</h1>
+        <h2>Where art is offering...</h2>
+      </div>
     </div>
-  </div>
-  <div class="description">
-    Tapasya seeks to promote and preserve authentic artistic traditions through research, documentation and dissemination, an
-    effort to understand and respect original cultural heritage.
+    <div class="description">
+      Tapasya seeks to promote and preserve authentic artistic traditions through research, documentation and dissemination, an
+      effort to understand and respect original cultural heritage.
+    </div>
   </div>
 </section>
     <section id="about" class="page">
@@ -197,15 +199,17 @@
     </div>
   </div>
 </section>
-    <section id="contact" class="page">
-  <div class="description">
-    <h1>Contact Us</h1>
-    <form name="contact-form" method="post" action="mail-handler.php">
-      <input class="input-text" type="text" placeholder="Name" name="full_name" required>
-      <input class="input-text" type="email" placeholder="Email" name="email" required>
-      <textarea class="input-text" placeholder="Message" maxlength="300" name="message" required></textarea>
-      <input type="submit" value="Submit">
-    </form>
+    <section class="page">
+  <div id="contact" class="sub-page">
+    <div class="description">
+      <h1>Contact Us</h1>
+      <form name="contact-form" method="post" action="mail-handler.php">
+        <input class="input-text" type="text" placeholder="Name" name="full_name" required>
+        <input class="input-text" type="email" placeholder="Email" name="email" required>
+        <textarea class="input-text" placeholder="Message" maxlength="300" name="message" required></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
   </div>
 </section>
   </main>
