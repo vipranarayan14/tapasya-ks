@@ -1,79 +1,114 @@
-const navLinks = document.querySelectorAll('.navLink');
-const navPages = document.querySelectorAll('.navPage');
+; (function () {
 
-const showClass = 'open';
+  let navPageSel, navLinkSel, navLinks, navPages, hashVal;
 
-function changeView() {
+  const activeHashClass = 'active-hash';
 
-  let navPageToShow = getNavPageToShow();
+  function activateNavLink(navLinkToShow) {
 
-  if (navPageToShow) {
-
-    hideAllNavPages();
-    showNavPage(navPageToShow);
+    navLinkToShow.classList.add(activeHashClass);
   }
-}
 
-function getNavPageToShow() {
+  function activateNavPage(navPageToShow) {
 
-  let navPageToShow = '', hashVal = location.hash;
+    navPageToShow.classList.add(activeHashClass);
+  }
 
-  if (hashVal) { navPageToShow = document.querySelector(hashVal); }
+  function changeView() {
 
-  if (!hashVal || !navPageToShow) {
+    hashVal = location.hash;
 
-    navPageToShow = document.querySelector('.navPage.open');
+    let navTargets = getNavTargets(),
+      navPageToShow = navTargets.navPage,
+      navLinkToShow = navTargets.navLink;
 
-    if (!navPageToShow) {
+    if (navPageToShow) {
 
-      navPageToShow = document.querySelector('.navPage');
+      hideAllNavPages();
+
+      activateNavPage(navPageToShow);
+      activateNavLink(navLinkToShow);
     }
   }
 
-  return navPageToShow;
-}
+  function getNavTargets() {
 
-function initStyles() {
+    let navPage = '', navLink = '';
 
-  const style = document.createElement("style");
+    if (hashVal) {
 
-  style.id = 'hash-router-styles';
-  style.appendChild(document.createTextNode("")); //WebKit Hack
-  document.head.appendChild(style);
+      navPage = document.querySelector(hashVal);
+      navLink = document.querySelector('a[href="' + hashVal + '"]' + '.' + navLinkSel);
+    }
 
-  const styleSheet = style.sheet;
+    if (!hashVal || !navPage) {
 
-  styleSheet.insertRule('.navPage { display: none }', 0);
-  styleSheet.insertRule('.navPage.' + showClass + '{ display: block }', 0);
+      navPage = document.querySelector('.' + navPageSel + '.' + activeHashClass);
 
-}
+      if (navPage) {
 
-function initEventListeners() {
+        navLink = document.querySelector('a[href="#' + navPage.id + '"]' + '.' + navLinkSel);
+      } else {
 
-  window.addEventListener('load', changeView);
-  window.addEventListener('hashchange', changeView);
-}
+        navPage = document.querySelector('.' + navPageSel);
+        navLink = document.querySelector('.' + navLinkSel);
+      }
+    }
 
-function hideAllNavPages() {
+    return { navPage, navLink };
+  }
 
-  for (let i = 0, len = navPages.length; i < len; i++) {
+  function initStyles() {
 
-    if (navPages[i].classList.contains(showClass)) {
+    const style = document.createElement("style");
 
-      navPages[i].classList.remove(showClass);
+    style.id = 'hash-router-styles';
+    style.appendChild(document.createTextNode("")); //WebKit Hack
+    document.head.appendChild(style);
+    
+    const styleSheet = style.sheet;
+
+    styleSheet.insertRule('.' + navPageSel + ' { display: none }', 0);
+    styleSheet.insertRule('.' + navPageSel + '.' + activeHashClass + '{ display: block }', 0);
+  }
+
+  function initEventListeners() {
+
+    window.addEventListener('load', changeView);
+    window.addEventListener('hashchange', changeView);
+  }
+
+  function hideAllNavPages() {
+
+    for (let i = 0, len = navPages.length; i < len; i++) {
+
+      if (navPages[i].classList.contains(activeHashClass)) {
+
+        navPages[i].classList.remove(activeHashClass);
+      }
+    }
+
+    for (let i = 0, len = navLinks.length; i < len; i++) {
+
+      if (navLinks[i].classList.contains(activeHashClass)) {
+
+        navLinks[i].classList.remove(activeHashClass);
+      }
     }
   }
-}
 
-function initHashRouting() {
+  function initHashRouting(navPageSelector = 'navPage', navLinkSelector = 'navLink') {
 
-  initStyles();
-  initEventListeners();
-}
+    navPageSel = navPageSelector;
+    navLinkSel = navLinkSelector;
 
-function showNavPage(navPageToShow) {
+    navPages = document.querySelectorAll('.' + navPageSel);
+    navLinks = document.querySelectorAll('.' + navLinkSel);
 
-  navPageToShow.classList.add(showClass);
-}
+    initStyles();
+    initEventListeners();
+  }
 
-initHashRouting();
+  window.initHashRouting = initHashRouting;
+
+})(window);

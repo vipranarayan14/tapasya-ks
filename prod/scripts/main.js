@@ -5,25 +5,26 @@ const allDropdowns = document.querySelectorAll('.p-dropdown');
 const menuIcon = document.querySelector('.menu-icon');
 const hiliteClass = "w3-green";
 
-window.addEventListener('load', () => {
-  const reqHash = location.hash;
-  if (reqHash) {
-    showElement(reqHash);
-  }
-})
-for (let i = 0, length = navBtns.length; i < length; i++) {
+// window.addEventListener('load', () => {
+//   const reqHash = location.hash;
+//   if (reqHash) {
+//     showElement(reqHash);
+//   }
+// });
 
-  navBtns[i].addEventListener('click', (e) => {
+// for (let i = 0, length = navBtns.length; i < length; i++) {
 
-    e.preventDefault();
-    highlightNavBtn(navBtns[i]);
-    showElement(navBtns[i].getAttribute('href'));
+//   navBtns[i].addEventListener('click', (e) => {
 
-    if (!window.matchMedia("(min-width:700px)").matches) {
-      toggleNav();
-    }
-  });
-}
+//     e.preventDefault();
+//     highlightNavBtn(navBtns[i]);
+//     showElement(navBtns[i].getAttribute('href'));
+
+//     if (!window.matchMedia("(min-width:700px)").matches) {
+//       toggleNav();
+//     }
+//   });
+// }
 
 for (let i = 0, length = allDropdowns.length; i < length; i++) {
 
@@ -35,69 +36,70 @@ for (let i = 0, length = allDropdowns.length; i < length; i++) {
     allDropdowns[i].querySelector('.p-dropdown-content').classList.toggle('active');
   });
 }
-menuIcon.addEventListener('click', (e) => {
-  e.preventDefault();
-  toggleNav();
-});
+// menuIcon.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   toggleNav();
+// });
 
-function toggleNav() {
-  document.querySelector('header').classList.toggle('nav-open');
-  document.querySelector('nav').classList.toggle('nav-open');
-}
-function showElement(eleId) {
+// function toggleNav() {
+//   document.querySelector('header').classList.toggle('nav-open');
+//   document.querySelector('nav').classList.toggle('nav-open');
+// }
+// function showElement(eleId) {
 
-  const ele = document.querySelector(eleId);
+//   const ele = document.querySelector(eleId);
 
-  if (ele) {
+//   if (ele) {
 
-    hideAllPagesAndSubpages();
+//     hideAllPagesAndSubpages();
 
-    const eleParent = ele.parentElement;
+//     const eleParent = ele.parentElement;
 
-    if (eleParent.nodeName === 'SECTION' && eleParent.style.display === 'none') {
+//     if (eleParent.nodeName === 'SECTION' && eleParent.style.display === 'none') {
 
-      eleParent.style.display = 'block';
-    }
+//       eleParent.style.display = 'block';
+//     }
 
-    ele.style.display = 'block';
-  }
-}
+//     ele.style.display = 'block';
+//   }
+// }
 
-function hideAllPagesAndSubpages() {
+// function hideAllPagesAndSubpages() {
 
-  for (let i = 0, length = allPages.length; i < length; i++) {
+//   for (let i = 0, length = allPages.length; i < length; i++) {
 
-    allPages[i].style.display = 'none';
-  }
+//     allPages[i].style.display = 'none';
+//   }
 
-  for (let i = 0, length = allSubpages.length; i < length; i++) {
+//   for (let i = 0, length = allSubpages.length; i < length; i++) {
 
-    allSubpages[i].style.display = 'none';
-  }
-}
+//     allSubpages[i].style.display = 'none';
+//   }
+// }
 
-function highlightNavBtn(ele) {
+// function highlightNavBtn(ele) {
 
-  const headerActiveLinks = document.querySelectorAll('header .' + hiliteClass);
+//   const headerActiveLinks = document.querySelectorAll('header .' + hiliteClass);
 
-  for (let i = 0, length = headerActiveLinks.length; i < length; i++) {
+//   for (let i = 0, length = headerActiveLinks.length; i < length; i++) {
 
-    headerActiveLinks[i].classList.remove(hiliteClass);
-  }
+//     headerActiveLinks[i].classList.remove(hiliteClass);
+//   }
 
-  if (!ele.classList.contains('logo-text')) {
+//   if (!ele.classList.contains('logo-text')) {
 
-    ele.classList.add(hiliteClass);
+//     ele.classList.add(hiliteClass);
 
-    for (let i = 0, length = allDropdowns.length; i < length; i++) {
+//     for (let i = 0, length = allDropdowns.length; i < length; i++) {
 
-      const isActive = allDropdowns[i].querySelector('.' + hiliteClass) !== null;
+//       const isActive = allDropdowns[i].querySelector('.' + hiliteClass) !== null;
 
-      if (isActive) {
+//       if (isActive) {
 
-        allDropdowns[i].querySelector('.p-dropdown-btn').classList.add(hiliteClass);
-      }
+//         allDropdowns[i].querySelector('.p-dropdown-btn').classList.add(hiliteClass);
+//       }
 
-    }
-  }
-}
+//     }
+//   }
+// }
+initHashRouting('sub-page');
