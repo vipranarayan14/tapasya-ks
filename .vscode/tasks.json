@@ -17,14 +17,14 @@
             "suppressTaskName": true,
             "isBuildCommand": true,
             "command": "lessc",
-            "args": ["--clean-css", "prod/styles/index.less", "prod/styles/styles.css"]
+            "args": ["--clean-css", "prod/styles/index.less", "prod/styles.css"]
         },
         {
             "taskName": "Purify CSS",
             "suppressTaskName": true,
             "isBuildCommand": true,
             "command": "purifycss",
-            "args": ["prod/styles/styles.css", "index.html", "script.min.js", "--min", "--info", "--out", "styles.min.css"]
+            "args": ["prod/styles.css", "index.html", "script.min.js", "--min", "--info", "--out", "styles.min.css"]
         },
         {
             "taskName": "Uglify JSs",
