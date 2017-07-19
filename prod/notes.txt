@@ -99,3 +99,7 @@ function highlightNavBtn(ele) {
     }
   }
 }
+
+//bg-colors
+#005422
+#465400
