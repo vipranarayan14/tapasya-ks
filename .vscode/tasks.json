@@ -1,37 +1,36 @@
 {
-    "version": "0.1.0",
-    "isShellCommand": true,
-    "showOutput": "silent",
-    "args": [],
-
+    "version": "2.0.0",
+    "type": "shell",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+    },
     "tasks": [
         {
             "taskName": "Fuse HTMLs",
             "suppressTaskName": true,
-            "isBuildCommand": true,
-            "command": "fuse",
-            "args": ["-i", "prod/index.html", "-o", "index.html"]
+            "command": "fuse -i prod/index.html -o index.html",
+            "problemMatcher": []
         },
         {
             "taskName": "Complie LESSs",
             "suppressTaskName": true,
-            "isBuildCommand": true,
-            "command": "lessc",
-            "args": ["--clean-css", "prod/styles/index.less", "prod/styles.css"]
+            "command": "lessc --clean-css prod/styles/index.less prod/styles.css",
+            "problemMatcher": []
         },
         {
             "taskName": "Purify CSS",
             "suppressTaskName": true,
-            "isBuildCommand": true,
-            "command": "purifycss",
-            "args": ["prod/styles.css", "index.html", "script.min.js", "--min", "--info", "--out", "styles.min.css"]
+            "command": "purifycss prod/styles.css index.html script.min.js --min --info --out styles.min.css",
+            "problemMatcher": []
         },
         {
             "taskName": "Uglify JSs",
             "suppressTaskName": true,
-            "isBuildCommand": true,
-            "command": "uglifyjs",
-            "args": ["prod/scripts/hash-router.js", "prod/scripts/main.js", "-c", "-m", "-o", "script.min.js"]
+            "command": "uglifyjs prod/scripts/hash-router.js prod/scripts/main.js -c -m -o script.min.js",
+            "problemMatcher": []
         }
     ]
 }
