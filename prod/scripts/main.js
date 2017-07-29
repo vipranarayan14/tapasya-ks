@@ -17,15 +17,6 @@ for (let i = 0, length = navBtns.length; i < length; i++) {
   });
 }
 
-for (let i = 0, length = allDropdowns.length; i < length; i++) {
-
-  allDropdowns[i].querySelector('.p-dropdown-btn').addEventListener('click', (e) => {
-
-    e.target.classList.toggle('active');
-    allDropdowns[i].querySelector('.p-dropdown-content').classList.toggle('active');
-  });
-}
-
 // Hide Logo-text in '#home' page
 window.addEventListener('load', toggleLogoText);
 window.addEventListener('hashchange', toggleLogoText);
