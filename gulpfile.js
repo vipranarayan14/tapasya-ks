@@ -17,7 +17,7 @@ gulp.task('includeHTMLs', function () {
 gulp.task('compileLESSs', function () {
   gulp.src('./prod/styles/index.less')
     .pipe(less())
-    .pipe(purifycss(['./dist/index.html']))
+    .pipe(purifycss(['./dist/index.html', './dist/scripts.min.js']))
     .pipe(cssnano())
     .pipe(rename('styles.min.css'))
     .pipe(gulp.dest('./dist'))
