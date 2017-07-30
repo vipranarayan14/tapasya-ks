@@ -13,15 +13,15 @@
 </head>
 
 <body>
-  <!-- @include views/header.html -->
+  @@include('views/header.html')
   <main>
-    <!-- @include views/home.html -->
-    <!-- @include views/about.html -->
-    <!-- @include views/activities.html -->
-    <!-- @include views/contact.html -->
+    @@include('views/home.html')
+    @@include('views/about.html')
+    @@include('views/activities.html')
+    @@include('views/contact.html')
   </main>
-  <!-- @include views/footer.html -->
-  <script src="script.min.js"></script>
+  @@include('views/footer.html');
+  <script src="scripts.min.js"></script>
 </body>
 
 </html>
