@@ -5,20 +5,45 @@ const logoText = document.querySelector('.logo .logo-text');
 
 /********* Comman *********/
 
-// Hide Logo-text in '#home' page
-window.addEventListener('load', toggleLogoText);
-window.addEventListener('hashchange', toggleLogoText);
+window.addEventListener('load', triggerHashBasedEvents);
+window.addEventListener('hashchange', triggerHashBasedEvents);
 
+function triggerHashBasedEvents() {
+
+  toggleLogoText();
+}
+
+// Hide Logo-text in '#home' page
 function toggleLogoText() {
 
   if (location.hash === '' || location.hash === '#home') {
+
     logoText.classList.add('w3-hide');
   } else {
+
     logoText.classList.remove('w3-hide');
   }
 }
 
-initHashRouting('sub-page');
+// Open dropdown after closing others
+for (let i = 0, length = allDropdowns.length; i < length; i++) {
+
+  allDropdowns[i].addEventListener('click', () => {
+    
+    closeAllDropdowns();
+    allDropdowns[i].classList.add('open');
+  });
+}
+
+function closeAllDropdowns() {
+
+  for (let i = 0, length = allDropdowns.length; i < length; i++) {
+
+    allDropdowns[i].classList.remove('open');
+  }
+}
+
+HashRouter.init('sub-page');
 
 /**************************/
 
@@ -36,6 +61,7 @@ for (let i = 0, length = navBtns.length; i < length; i++) {
 
   navBtns[i].addEventListener('click', (e) => {
 
+    closeAllDropdowns();
     toggleNav();
   });
 }
@@ -45,18 +71,4 @@ function toggleNav() {
   document.querySelector('header').classList.toggle('nav-open');
 }
 
-for (let i = 0, length = allDropdowns.length; i < length; i++) {
-
-  allDropdowns[i].addEventListener('click', () => {
-    
-    closeAllDropdowns();
-    allDropdowns[i].classList.add('open');
-  });
-}
-
-function closeAllDropdowns() {
-  for (let i = 0, length = allDropdowns.length; i < length; i++) {
-    allDropdowns[i].classList.remove('open');
-  }
-}
 /**************************/
