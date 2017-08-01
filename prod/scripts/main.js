@@ -3,19 +3,7 @@ const allDropdowns = document.querySelectorAll('.p-dropdown');
 const menuIcon = document.querySelector('.menu-icon');
 const logoText = document.querySelector('.logo .logo-text');
 
-menuIcon.addEventListener('click', (e) => {
-
-  e.preventDefault();
-  toggleNav();
-});
-
-for (let i = 0, length = navBtns.length; i < length; i++) {
-
-  navBtns[i].addEventListener('click', (e) => {
-
-    toggleNav();
-  });
-}
+/********* Comman *********/
 
 // Hide Logo-text in '#home' page
 window.addEventListener('load', toggleLogoText);
@@ -30,10 +18,45 @@ function toggleLogoText() {
   }
 }
 
+initHashRouting('sub-page');
+
+/**************************/
+
+
+
+/********* Mobile *********/
+
+menuIcon.addEventListener('click', (e) => {
+
+  e.preventDefault();
+  toggleNav();
+});
+
+for (let i = 0, length = navBtns.length; i < length; i++) {
+
+  navBtns[i].addEventListener('click', (e) => {
+
+    toggleNav();
+  });
+}
+
 function toggleNav() {
 
   document.querySelector('header').classList.toggle('nav-open');
-  document.querySelector('nav').classList.toggle('nav-open');
 }
 
-initHashRouting('sub-page');
+for (let i = 0, length = allDropdowns.length; i < length; i++) {
+
+  allDropdowns[i].addEventListener('click', () => {
+    
+    closeAllDropdowns();
+    allDropdowns[i].classList.add('open');
+  });
+}
+
+function closeAllDropdowns() {
+  for (let i = 0, length = allDropdowns.length; i < length; i++) {
+    allDropdowns[i].classList.remove('open');
+  }
+}
+/**************************/

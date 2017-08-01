@@ -22,6 +22,11 @@ header {
     }
   }
   nav {
+    .navLink.active-hash {
+      background-color: #d6b400;
+      color: #fff;
+    }
+
     ul {
       list-style-type: none;
       padding: 0;
@@ -51,6 +56,13 @@ header {
     &.nav-open {
       height: 100vh;
       background: rgba(255, 255, 255, 0.8);
+
+      nav {
+        .w3-animate-top;
+        position: relative;
+        z-index: -1;
+        display: block;
+      }
     }
 
     .logo {
@@ -80,20 +92,11 @@ header {
       }
     }
 
-
     nav {
       height: 100%;
       width: 100%;
       display: none;
       overflow-y: auto;
-
-
-      &.nav-open {
-        .w3-animate-top;
-        position: relative;
-        z-index: -1;
-        display: block;
-      }
 
       ul {
         margin-bottom: 80px; // For "Contact" Item to be visible.
@@ -108,14 +111,10 @@ header {
           .w3-block;
         }
 
-        .p-dropdown {
-          .p-dropdown-content:not(.active) {
+        .p-dropdown:not(.open) {
+          .p-dropdown-content {
             display: none;
           }
-        }
-
-        .p-dropdown-btn.active:not(.w3-green) {
-          .w3-gray;
         }
       }
     }
@@ -144,11 +143,6 @@ header {
       margin-bottom: 16px;
       .w3-right;
 
-      .navLink.active-hash {
-        background-color: #d6b400;
-        color: #fff;
-      }
-
       ul {
         margin: 0;
         overflow: hidden;
@@ -173,9 +167,7 @@ header {
           display: block;
           text-align: left;
         }
-        // .p-dropdown-btn.active-dropdown {
-        //   background-color: yellow;
-        // }
+
         .p-dropdown:hover .p-dropdown-content {
           display: block;
         }
