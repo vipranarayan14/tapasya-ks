@@ -5,25 +5,25 @@ const logoText = document.querySelector('.logo .logo-text');
 
 /********* Comman *********/
 
-window.addEventListener('load', triggerHashBasedEvents);
-window.addEventListener('hashchange', triggerHashBasedEvents);
+// window.addEventListener('load', triggerHashBasedEvents);
+// window.addEventListener('hashchange', triggerHashBasedEvents);
 
-function triggerHashBasedEvents() {
+// function triggerHashBasedEvents() {
 
-  toggleLogoText();
-}
+//   toggleLogoText();
+// }
 
-// Hide Logo-text in '#home' page
-function toggleLogoText() {
+// // Hide Logo-text in '#home' page
+// function toggleLogoText() {
 
-  if (location.hash === '' || location.hash === '#home') {
+//   if (location.hash === '' || location.hash === '#home') {
 
-    logoText.classList.add('w3-hide');
-  } else {
+//     logoText.classList.add('hidden');
+//   } else {
 
-    logoText.classList.remove('w3-hide');
-  }
-}
+//     logoText.classList.remove('hidden');
+//   }
+// }
 
 // Open dropdown after closing others
 for (let i = 0, length = allDropdowns.length; i < length; i++) {
