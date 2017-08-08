@@ -4,13 +4,12 @@ body {
 }
 
 h1,
-h2,
-h3 {
+h2 {
   font-family: 'Montserrat', sans-serif;
 }
 
 main {
-  margin-top: 52px;
+  margin-top: @small-header-ht;
   margin-bottom: 50px;
 }
 
@@ -32,7 +31,8 @@ input:focus {
 .banner {
   &:extend(.w3-display-container);
   background-color: @theme-500;
-  height: 400px;
+  height: 320px;
+
   h1 {
     &:extend(.w3-display-bottommiddle);
     &:extend(.w3-padding);
@@ -53,9 +53,10 @@ input:focus {
 
 @media only screen and (min-width: @screen-break-point) {
   main {
-    margin-top: 72px;
+    margin-top: @large-header-ht;
   }
   .banner {
+    height: 400px;
     h1 {
       font-size: 4em;
     }

@@ -45,21 +45,29 @@ header {
     }
   }
 }
+@media only screen and (max-width: (@screen-break-point - 450)) {
+  header {
+    .logo {
+      .logo-text {
+        font-size: 16px;
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: @screen-break-point) {
 
-  @header-height: 50px;
-
   header {
-    min-height: @header-height;
+    height: @small-header-ht;
+    min-height: @small-header-ht;
     width: 100vw;
-    text-align: center;
 
     &.nav-open {
       height: 100vh;
       background-color: rgba(255, 255, 255, 0.8);
 
       .logo {
+        height: @small-header-ht;
         .w3-card-2;
       }
 
@@ -72,14 +80,14 @@ header {
     }
 
     .logo {
-      background-size: @header-height @header-height;
-      font-family: Montserrat;
-      font-size: 20px;
+      height: 100%;
+      background-size: @small-header-ht @small-header-ht;
+      background-position: 10px center;
       padding: 10px 0;
 
       .menu-icon {
         .w3-right;
-        margin-right: 10px;
+        margin-right: 15px;
         padding: 0 5px;
         cursor: pointer;
 
@@ -89,8 +97,7 @@ header {
       }
 
       .logo-text {
-        margin-left: (@header-height + 42);
-        margin-right: (@header-height + 2);
+        margin-left: (10 + @small-header-ht + 2);
         display: inline-block;
       }
     }
@@ -123,19 +130,8 @@ header {
     }
   }
 }
-@media only screen and (max-width: (@screen-break-point - 380px)) {
-  header {
-    .logo {
-      .logo-text {
-        margin-left: 50px;
-      }
-    }
-  }
-}
 
 @media only screen and (min-width: @screen-break-point) {
-
-  @header-height: 70px;
 
   header {
     .w3-container;
@@ -143,17 +139,17 @@ header {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    height: @header-height;
+    height: @large-header-ht;
 
     .logo {
       align-items: center;
-      background-size: @header-height @header-height;
+      background-size: @large-header-ht @large-header-ht;
       display: inline-flex;
       height: 100%;
       padding: 0;
 
       .logo-text {
-        margin-left: (@header-height + 2);
+        margin-left: (@large-header-ht + 2);
       }
     }
 
