@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Gallery</title>
+
+  <link rel="stylesheet" href="styles.min.css">
+  <link rel="stylesheet" href="../styles.min.css">
+</head>
+
+<body>
+  @@include('../header.html', { "ROOTDIR_": "../"})
+  
+  <main>
+    <section class="sb-previews sub-page">
+      @@loop('previews.html', 'images.json')
+    </section>
+  </main>
+
+  <section class="sb-modal">
+    <span class="sb-image-count btn"></span>
+    <span class="sb-close btn">&times;</span>
+    <div class="sb-stage">
+      <span class="sb-prev btn">&#10094;</span>
+      <span class="sb-next btn">&#10095;</span>
+    </div>
+    <div class="sb-caption"></div>
+  </section>
+
+  @@include('../footer.html')
+  
+  <script src="scripts.min.js"></script>
+  <script src="../scripts.min.js"></script>
+</body>
+
+</html>
