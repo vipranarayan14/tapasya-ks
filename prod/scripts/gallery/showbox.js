@@ -37,10 +37,10 @@ document.addEventListener('keydown', (e) => {
 
   if (SBModal.classList.contains('open')) {
 
-    if (e.keyCode === 39) {
+    if (e.keyCode === 37) {
 
       prevSlide();
-    } else if (e.keyCode === 37) {
+    } else if (e.keyCode === 39) {
 
       nextSlide();
     } else if (e.keyCode === 27) {
@@ -82,6 +82,6 @@ function openModal() {
 
 function prevSlide() {
 
-  slideIndex = slideIndex + 1;
+  slideIndex = slideIndex - 1;
   openModal();
 }
