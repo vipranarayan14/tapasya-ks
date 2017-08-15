@@ -51,7 +51,8 @@ document.addEventListener('keydown', (e) => {
 });
 
 function closeModal() {
-
+  
+  document.documentElement.style.overflow = 'initial';
   document.body.style.overflow = 'initial';
   SBModal.classList.remove('open');
 }
@@ -74,6 +75,7 @@ function openModal() {
   SBStage.style.backgroundImage = slideURL;
   SBCaption.innerText = slideTitle;
 
+  document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
   SBModal.classList.add('open');
 }
