@@ -1,15 +1,30 @@
 ; (function () {
 
+  "use strict";
+
+  const activeHashClass = 'hr-active-hash';
+
   let HashRouter = {};
-  let navPageSel, navLinkSel, navLinks, navPages, hashVal;
 
-  const activeHashClass = 'active-hash';
+  let navLinkSel = '', navPageSel = '', navLinks = '', navPages = '';
 
-  function activateNavLink(navLinkToShow) {
+  let config = {
+    defaultNavPageID: '',
+    navPageSelector: 'hr-navPage',
+    navLinkSelector: 'hr-navLink',
+    navPagesToGet: []
+  };
 
-    HashRouter.currentNavLink = navLinkToShow;
+  function activateNavLink(hashVal) {
 
-    navLinkToShow.classList.add(activeHashClass);
+    let navLinkToShow = findNavLink(hashVal);
+
+    if (navLinkToShow) {
+
+      HashRouter.currentNavLink = navLinkToShow;
+
+      navLinkToShow.classList.add(activeHashClass);
+    }
   }
 
   function activateNavPage(navPageToShow) {
@@ -19,70 +34,130 @@
     navPageToShow.classList.add(activeHashClass);
   }
 
-  function changeView() {
+  function changeView(hashVal, navPageID, navPage) {
 
-    hashVal = location.hash;
+    hideAllNavPages();
 
-    let navTargets = getNavTargets(),
-      navPageToShow = navTargets.navPage,
-      navLinkToShow = navTargets.navLink;
+    activateNavPage(navPage);
+    activateNavLink(hashVal);
 
-    if (navPageToShow) {
+    setNavPageContentIfExists(navPageID, navPage);
 
-      hideAllNavPages();
-
-      activateNavPage(navPageToShow);
-      activateNavLink(navLinkToShow);
-
-      window.scrollTo(0, 0);
-    }
+    window.scrollTo(0, 0);
   }
 
-  function getNavTargets() {
+  function configureOptions(options) {
 
-    let navPage = '', navLink = '';
+    if (options) {
 
-    if (hashVal) {
-
-      navPage = document.querySelector(hashVal);
-      navLink = document.querySelector('a[href="' + hashVal + '"]' + '.' + navLinkSel);
+      config = Object.assign(config, options);
     }
 
-    if (!hashVal || !navPage) {
+    configureVariables();
+  }
 
-      navPage = document.querySelector('.' + navPageSel + '.' + activeHashClass);
+  function configureVariables() {
 
-      if (navPage) {
+    navPageSel = config.navPageSelector;
+    navLinkSel = config.navLinkSelector;
 
-        navLink = document.querySelector('a[href="#' + navPage.id + '"]' + '.' + navLinkSel);
-      } else {
+    navPages = Array.prototype.slice.call(document.querySelectorAll('.' + navPageSel));
+    navLinks = Array.prototype.slice.call(document.querySelectorAll('.' + navLinkSel));
 
-        navPage = document.querySelector('.' + navPageSel);
-        navLink = document.querySelector('.' + navLinkSel);
+    HashRouter.navLinks = navLinks;
+    HashRouter.navPages = navPages;
+  }
+
+  function findNavLink(hashVal) {
+
+    return navLinks.find(item => item.hash === hashVal);
+  }
+
+  function findNavPage(navPageID) {
+
+    return navPages.find(item => item.id === navPageID);
+  }
+
+  function getNavPageContent(url, setNavPageContent) {
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+      if (this.readyState == 4 && this.status == 200) {
+
+        setNavPageContent(this.responseText);
       }
     }
 
-    return { navPage, navLink };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+
+    return;
   }
 
-  function initStyles() {
+  function setNavPageContentIfExists(navPageID, navPage) {
 
-    const style = document.createElement("style");
+    const navPagesToGet = config.navPagesToGet;
+    let navPageToGet = '', navPageContent = '';
 
-    style.id = 'hash-router-styles';
-    style.appendChild(document.createTextNode("")); //WebKit Hack
-    document.head.appendChild(style);
+    if (navPagesToGet) {
 
-    const styleSheet = style.sheet;
+      navPageToGet = config.navPagesToGet.find(item => item.navPageID === navPageID);
 
-    styleSheet.insertRule('.' + navPageSel + ' { display: none }', 0);
-    styleSheet.insertRule('.' + navPageSel + '.' + activeHashClass + '{ display: block }', 0);
+      if (navPageToGet) {
+
+        navPageContent = getNavPageContent(navPageToGet.urlToGet, (navPageContent) => {
+
+          if (navPageContent) {
+
+            navPage.innerHTML = navPageContent;
+          }
+        });
+      }
+    }
   }
 
-  function initEventListeners() {
+  function goToDefaultPage() {
 
-    window.addEventListener('load', changeView);
-    window.addEventListener('hashchange', changeView);
+    const defaultPage = config.defaultNavPageID;
+    let firstNavPageEle = '';
+
+    if (defaultPage) {
+
+      window.location.hash = '#/' + defaultPage;
+    } else {
+
+      firstNavPageEle = navPages[0];
+
+      if (firstNavPageEle && firstNavPageEle.id) {
+
+        config.defaultNavPageID = firstNavPageEle.id;
+
+        goToDefaultPage();
+      } else {
+
+        return console.error('HashRouter: Default page is not set');
+      }
+    }
+  }
+
+  function HashHandler() {
+
+    let hashVal = window.location.hash;
+    let navPageID = hashVal.replace('#/', '');
+
+    if (hashVal) {
+
+      let navPage = findNavPage(navPageID);
+
+      if (navPage) {
+
+        changeView(hashVal, navPageID, navPage);
+
+      } else goToDefaultPage();
+
+    } else goToDefaultPage();
   }
 
   function hideAllNavPages() {
@@ -104,19 +179,31 @@
     }
   }
 
-  function initHashRouting(navPageSelector = 'navPage', navLinkSelector = 'navLink') {
+  function initEventListeners() {
 
-    navPageSel = navPageSelector;
-    navLinkSel = navLinkSelector;
+    window.addEventListener('load', HashHandler);
+    window.addEventListener('hashchange', HashHandler);
+  }
 
-    navPages = document.querySelectorAll('.' + navPageSel);
-    navLinks = document.querySelectorAll('.' + navLinkSel);
+  function initHashRouting(options) {
 
-    HashRouter.navLinks = navLinks;
-    HashRouter.navPages = navPages;
-
+    configureOptions(options);
     initStyles();
     initEventListeners();
+  }
+
+  function initStyles() {
+
+    const style = document.createElement("style");
+
+    style.id = 'hash-router-styles';
+    style.appendChild(document.createTextNode("")); //WebKit Hack
+    document.head.appendChild(style);
+
+    const styleSheet = style.sheet;
+
+    styleSheet.insertRule('.' + navPageSel + ' { display: none }', 0);
+    styleSheet.insertRule('.' + navPageSel + '.' + activeHashClass + '{ display: block }', 0);
   }
 
   HashRouter.init = initHashRouting;
