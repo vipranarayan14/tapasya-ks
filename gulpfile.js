@@ -73,7 +73,8 @@ gulp.task('watch', ['browserSync'], function () {
 
   gulp.watch('./prod/styles/gallery/*.less', ['compileLESSs']);
   gulp.watch('./prod/scripts/gallery/*.js', ['uglifyJSs']);
-  gulp.watch('./prod/views/gallery/*', ['includeHTMLs']);
+  gulp.watch('./prod/views/gallery/*.html', ['includeHTMLs']);
+  gulp.watch('./prod/views/gallery/*.json', ['includeHTMLs']);
 
   gulp.watch('./dist/*', browserSync.reload);
 });
