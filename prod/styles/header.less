@@ -20,7 +20,7 @@ header {
     }
   }
   nav {
-    .navLink.active-hash {
+    .navLink.hr-active-hash {
       background-color: @theme-A900;
       color: #fff;
     }
@@ -32,19 +32,22 @@ header {
       li a,
       .p-dropdown .p-dropdown-btn {
         .w3-button;
+        transition: background-color 0.5s ease-out;
       }
 
       li a:hover,
       .p-dropdown:hover .p-dropdown-btn {
         background-color: #d0cdcd;
+        transition: background-color 0.5s ease-out;
       }
 
-      .p-dropdown-content a:not(.active-hash):hover {
+      .p-dropdown-content a:not(.hr-active-hash):hover {
         background-color: #d6d4d4;
       }
     }
   }
 }
+
 @media only screen and (max-width: (@screen-break-point - 450)) {
   header {
     .logo {
@@ -118,12 +121,14 @@ header {
 
         li a,
         .p-dropdown .p-dropdown-btn {
-          .w3-block;
+          display: block;
+          transition: display 5s ease-in;
         }
 
         .p-dropdown:not(.open) {
           .p-dropdown-content {
             display: none;
+            transition: display 5s ease-in;
           }
         }
       }
