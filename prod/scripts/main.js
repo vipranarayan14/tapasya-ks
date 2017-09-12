@@ -28,7 +28,11 @@ HashRouter.init({
   navPageSelector: 'sub-page',
   navLinkSelector: 'navLink',
   navPagesToGet: [
-    { navPageID: 'gallery', urlToGet: 'gallery/index.html' }
+    {
+      navPageID: 'gallery',
+      urlToGet: 'gallery/index.html',
+      onSuccess: function () { initShowBox(); }
+    }
   ]
 });
 
