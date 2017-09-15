@@ -21,6 +21,7 @@ gulp.task('includeHTMLs', function () {
 });
 
 gulp.task('compileLESSs', function () {
+
   gulp.src('./prod/styles/index.less')
     .pipe(less())
     .pipe(purifycss(['./dist/index.html', './dist/scripts.min.js']))
@@ -39,6 +40,7 @@ gulp.task('compileLESSs', function () {
 });
 
 gulp.task('uglifyJSs', function () {
+
   gulp.src('./prod/scripts/**/*.js')
     .pipe(concat('scripts.js'))
     .pipe(babel({
@@ -47,26 +49,21 @@ gulp.task('uglifyJSs', function () {
     .pipe(rename('scripts.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
-
-  // gulp.src('./prod/scripts/gallery/*.js')
-  //   .pipe(concat('scripts.js'))
-  //   .pipe(babel({
-  //     presets: ['es2015']
-  //   }))
-  //   .pipe(rename('scripts.min.js'))
-  //   .pipe(uglify())
-  //   .pipe(gulp.dest('./dist/gallery'));
 });
 
 gulp.task('browserSync', function () {
+
   browserSync.init({
+
     server: {
+
       baseDir: 'dist'
     }
   })
 });
 
 gulp.task('watch', ['browserSync'], function () {
+
   gulp.watch('./prod/styles/*.less', ['compileLESSs']);
   gulp.watch('./prod/scripts/*.js', ['uglifyJSs']);
   gulp.watch('./prod/views/*.html', ['includeHTMLs']);
