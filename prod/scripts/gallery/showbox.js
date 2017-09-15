@@ -1,56 +1,74 @@
-; function initShowBox() {
+; (function () {
 
-  const SBPreviews = document.querySelectorAll('.sb-preview');
-  const SBModal = document.querySelector('.sb-modal');
-  const SBStage = SBModal.querySelector('.sb-stage');
-  const SBCaption = SBModal.querySelector('.sb-caption');
-  const SBSlideCount = document.querySelector('.sb-image-count');
+  let ShowBox = {};
 
+  let slidesLength = 0;
   let slideIndex = 0;
-  let slideURL, slideTitle = '';
-  let slidesLength = SBPreviews.length - 1;
+  let SBPreviews = [];
+  let slideURL = '', slideTitle = '';
+  let SBSlideCount = '', SBModal = '', SBStage = '', SBCaption = '';
 
-  for (let i = 0, l = SBPreviews.length; i < l; i++) {
+  function initVariables() {
 
-    SBPreviews[i].addEventListener('click', () => {
+    SBPreviews = document.querySelectorAll('.sb-preview');
+    SBModal = document.querySelector('.sb-modal');
+    SBStage = SBModal.querySelector('.sb-stage');
+    SBCaption = SBModal.querySelector('.sb-caption');
+    SBSlideCount = document.querySelector('.sb-image-count');
 
-      slideIndex = i;
-      openModal();
-    });
+    ShowBox.slidesLength = slidesLength = SBPreviews.length;
   }
 
-  SBModal.addEventListener('click', (e) => {
+  function initEventListeners() {
 
-    let targetClass = e.target.classList;
+    for (let i = 0, l = SBPreviews.length; i < l; i++) {
 
-    if (targetClass[0] === 'sb-prev') {
+      SBPreviews[i].addEventListener('click', () => {
 
-      prevSlide();
-    } else if (targetClass[0] === 'sb-next') {
-
-      nextSlide();
-    } else {
-
-      closeModal();
+        slideIndex = i + 1;
+        showSlide(slideIndex);
+      });
     }
-  });
 
-  document.addEventListener('keydown', (e) => {
+    SBModal.addEventListener('click', (e) => {
 
-    if (SBModal.classList.contains('open')) {
+      let targetClass = e.target.classList;
 
-      if (e.keyCode === 37) {
+      if (targetClass[0] === 'sb-prev') {
 
         prevSlide();
-      } else if (e.keyCode === 39) {
+      } else if (targetClass[0] === 'sb-next') {
 
         nextSlide();
-      } else if (e.keyCode === 27) {
+      } else {
 
         closeModal();
       }
-    }
-  });
+    });
+
+    document.addEventListener('keydown', (e) => {
+
+      if (SBModal.classList.contains('open')) {
+
+        if (e.keyCode === 37) {
+
+          prevSlide();
+        } else if (e.keyCode === 39) {
+
+          nextSlide();
+        } else if (e.keyCode === 27) {
+
+          closeModal();
+        }
+      }
+    });
+  }
+
+  function initShowBox() {
+
+    initVariables();
+    initEventListeners();
+  }
 
   function closeModal() {
 
@@ -61,30 +79,55 @@
 
   function nextSlide() {
 
-    slideIndex = slideIndex + 1;
-    openModal();
+    slideIndex += 1;
+    if (slideIndex > slidesLength) { slideIndex = 1 }
+
+    showSlide(slideIndex);
   }
 
-  function openModal() {
+  function prevSlide() {
 
-    if (slideIndex < 0) { slideIndex = slidesLength; }
-    if (slideIndex > slidesLength) { slideIndex = 0 }
+    slideIndex -= 1;
+    if (slideIndex < 1) { slideIndex = slidesLength; }
 
-    slideURL = SBPreviews[slideIndex].style.backgroundImage;
-    slideTitle = SBPreviews[slideIndex].getAttribute('title');
+    showSlide(slideIndex);
+  }
 
-    SBSlideCount.innerText = (slideIndex + 1) + ' / ' + (slidesLength + 1);
-    SBStage.style.backgroundImage = slideURL;
-    SBCaption.innerText = slideTitle;
+  function showSlide(slideNo) {
+
+    ShowBox.currentSlide = slideNo;
+    slideNo -= 1;
+
+    setSlideURLandTitle(slideNo);
+    setSlideCount(slideNo);
 
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     SBModal.classList.add('open');
   }
 
-  function prevSlide() {
+  function setSlideURLandTitle(slideNo) {
 
-    slideIndex = slideIndex - 1;
-    openModal();
+
+    slideURL = SBPreviews[slideNo].style.backgroundImage;
+    slideTitle = SBPreviews[slideNo].getAttribute('title');
+
+    SBStage.style.backgroundImage = slideURL;
+    SBCaption.innerText = slideTitle;
   }
-};
+
+  function setSlideCount(slideNo) {
+
+    SBSlideCount.innerText = (slideNo + 1) + ' / ' + (slidesLength);
+  }
+
+  ShowBox.init = initShowBox;
+  ShowBox.showSlide = showSlide;
+  ShowBox.prevSlide = prevSlide;
+  ShowBox.nextSlide = nextSlide;
+  ShowBox.slidesLength = 0;
+  ShowBox.currentSlide = 0;
+
+  window.ShowBox = ShowBox;
+
+})(window);  

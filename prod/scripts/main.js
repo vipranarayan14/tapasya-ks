@@ -31,7 +31,7 @@ HashRouter.init({
     {
       navPageID: 'gallery',
       urlToGet: 'gallery/index.html',
-      onSuccess: function () { initShowBox(); }
+      onSuccess: function () { ShowBox.init(); }
     }
   ]
 });
