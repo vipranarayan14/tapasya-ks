@@ -1,6 +1,11 @@
-body {
+html, body {
   font-family: 'Bitter', serif;
   font-size: 16px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 h1,
@@ -9,7 +14,9 @@ h2 {
 }
 
 main {
-  margin-top: @small-header-ht;
+  height: 85%;
+  width: 100%;
+  overflow: auto;
   margin-bottom: 50px;
 }
 
@@ -52,9 +59,6 @@ input:focus {
 }
 
 @media only screen and (min-width: @screen-break-point) {
-  main {
-    margin-top: @large-header-ht;
-  }
   .banner {
     height: 400px;
     h1 {
