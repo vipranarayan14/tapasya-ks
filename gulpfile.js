@@ -41,7 +41,11 @@ gulp.task('compileLESSs', function () {
 
 gulp.task('uglifyJSs', function () {
 
-  gulp.src('./prod/scripts/**/*.js')
+  gulp.src([
+    './prod/scripts/gallery/showbox.js',
+    './prod/scripts/hash-router.js',
+    './prod/scripts/main.js'
+  ])
     .pipe(concat('scripts.js'))
     .pipe(babel({
       presets: ['es2015']
