@@ -35,7 +35,7 @@ header {
       .p-dropdown .p-dropdown-btn {
         .button;
         transition: background-color 0.5s ease-out;
-
+        
         img {
           margin-bottom: -5px;
         }
@@ -84,9 +84,8 @@ header {
         text-align: center;
         border-radius: 50%;
         cursor: pointer;
-        background-image: url('images/icons/menu-icon.svg');
-        background-position: center center;
-        background-repeat: no-repeat;
+        .sprite;
+        .sprite.menu-icon;
         transition: background-image 0.2s ease-in;
 
         &:hover {
@@ -145,7 +144,8 @@ header {
     }
 
     .menu-icon {
-      background-image: url('images/icons/close-icon.svg');
+      .sprite;
+      .sprite.close-icon;
       transition: background-image 0.2s ease-in;
     }
   }
