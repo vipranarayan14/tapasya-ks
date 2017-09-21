@@ -71,23 +71,6 @@ header {
     min-height: @small-header-ht;
     width: 100vw;
 
-    &.nav-open {
-      height: 100vh;
-      background-color: rgba(255, 255, 255, 0.8);
-
-      .logo {
-        height: @small-header-ht;
-        .card;
-      }
-
-      nav {
-        .animate-top;
-        position: relative;
-        z-index: -1;
-        display: block;
-      }
-    }
-
     .logo {
       height: 100%;
       background-size: @small-header-ht @small-header-ht;
@@ -96,19 +79,18 @@ header {
 
       .menu-icon {
         float: right;
-        margin-right: 15px;
-        padding: 5px;
+        margin-right: 17px;
+        padding: 15px;
         text-align: center;
         border-radius: 50%;
         cursor: pointer;
+        background-image: url('images/icons/menu-icon.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        transition: background-image 0.2s ease-in;
 
         &:hover {
           background-color: #f1f1f1;
-        }
-
-        img {
-          display: table-cell;
-          vertical-align: middle;
         }
       }
 
@@ -135,16 +117,36 @@ header {
         li a,
         .p-dropdown .p-dropdown-btn {
           display: block;
-          transition: display 5s ease-in;
         }
 
         .p-dropdown:not(.open) {
           .p-dropdown-content {
             display: none;
-            transition: display 5s ease-in;
           }
         }
       }
+    }
+  }
+
+  header.nav-open {
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+
+    .logo {
+      height: @small-header-ht;
+      .card;
+    }
+
+    nav {
+      .animate-top;
+      position: relative;
+      z-index: -1;
+      display: block;
+    }
+
+    .menu-icon {
+      background-image: url('images/icons/close-icon.svg');
+      transition: background-image 0.2s ease-in;
     }
   }
 }
