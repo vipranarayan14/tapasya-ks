@@ -1,21 +1,23 @@
 #home {
   .home-banner {
-    &:extend(.w3-display-container);
     height: 400px;
     position: relative;
     z-index: 1;
     text-align: center;
+
     div {
-      &:extend(.w3-display-middle);
+      &:extend(.display-middle);
       width: 100%;
+
       h1 {
         color: @custom-h1;
         font-size: 3em;
         font-weight: 700;
         line-height: 1.06;
       }
+      
       h2 {
-        &:extend(.w3-xlarge);
+        font-size: 24px;
         color: @custom-h2;
       }
     }
@@ -50,6 +52,7 @@
         }
       }
     }
+    
     .description {
       width: 40%;
     }

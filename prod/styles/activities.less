@@ -18,8 +18,12 @@
     background-image: url('images/main/banners-bg/Currentprojects.jpg');
     background-position: center center;
     h1 {
-      &:extend(.w3-display-middle);
+      position: absolute;
+      top: 50%;
+      left: 50%;
       bottom: auto;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
     }
   }
   .description {

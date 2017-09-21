@@ -1,5 +1,5 @@
 header {
-  .w3-card-2;
+  .card;
   position: relative;
   z-index: 10;
 
@@ -20,7 +20,7 @@ header {
       padding: 0;
     }
   }
-  
+
   nav {
     .navLink.hr-active-hash {
       background-color: @theme-A900;
@@ -33,8 +33,12 @@ header {
 
       li a,
       .p-dropdown .p-dropdown-btn {
-        .w3-button;
+        .button;
         transition: background-color 0.5s ease-out;
+
+        img {
+          margin-bottom: -5px;
+        }
       }
 
       li a:hover,
@@ -73,11 +77,11 @@ header {
 
       .logo {
         height: @small-header-ht;
-        .w3-card-2;
+        .card;
       }
 
       nav {
-        .w3-animate-top;
+        .animate-top;
         position: relative;
         z-index: -1;
         display: block;
@@ -91,13 +95,20 @@ header {
       padding: 10px 0;
 
       .menu-icon {
-        .w3-right;
+        float: right;
         margin-right: 15px;
-        padding: 0 5px;
+        padding: 5px;
+        text-align: center;
+        border-radius: 50%;
         cursor: pointer;
 
         &:hover {
-          .w3-light-gray;
+          background-color: #f1f1f1;
+        }
+
+        img {
+          display: table-cell;
+          vertical-align: middle;
         }
       }
 
@@ -116,7 +127,7 @@ header {
       ul {
         margin-bottom: 80px; // For "Contact" Item to be visible.
         li {
-          .w3-border-bottom;
+          border-bottom: 1px solid #ccc;
           background-color: #f1f1f1;
           background-color: rgba(241, 241, 241, 0.4);
         }
@@ -141,8 +152,8 @@ header {
 @media only screen and (min-width: @screen-break-point) {
 
   header {
-    .w3-container;
-    .w3-white;
+    padding: 0.01em 16px;
+    background-color: #fff;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -179,9 +190,17 @@ header {
         }
 
         .p-dropdown-content {
-          .w3-card-4;
-          .w3-dropdown-content;
+          .card-4;
+          display: block;
           z-index: 1;
+          cursor: auto;
+          color: #000;
+          background-color: #fff;
+          display: none;
+          position: absolute;
+          min-width: 160px;
+          margin: 0;
+          padding: 0;
         }
 
         .p-dropdown-content a {
