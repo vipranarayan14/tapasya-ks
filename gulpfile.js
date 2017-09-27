@@ -42,7 +42,6 @@ gulp.task('compileLESSs', function () {
 gulp.task('uglifyJSs', function () {
 
   gulp.src([
-    './prod/scripts/gallery/showbox.js',
     './prod/scripts/hash-router.js',
     './prod/scripts/main.js'
   ])
@@ -53,6 +52,17 @@ gulp.task('uglifyJSs', function () {
     .pipe(rename('scripts.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
+
+  gulp.src([
+    './prod/scripts/gallery/*.js',
+  ])
+    .pipe(concat('scripts.js'))
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(rename('scripts.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/gallery'));
 });
 
 gulp.task('browserSync', function () {
