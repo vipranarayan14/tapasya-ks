@@ -4,7 +4,7 @@ file_deploy() {
 
   if [ "$TRAVIS_BRANCH" == "master" ]; then
     REMOTE_DIR="~/public_html";
-  elif [ "$TRAVIS_BRANCH" == "develop" ]; then
+  elif [ "$TRAVIS_BRANCH" == "development" ]; then
     REMOTE_DIR="~/public_html_alpha";
   else 
     echo "This will not deploy!";
