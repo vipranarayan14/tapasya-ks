@@ -8,19 +8,26 @@ const less = require('gulp-less');
 const purifycss = require('gulp-purifycss');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
+const runSequence = require('run-sequence');
+const rimraf = require('rimraf');
 
-gulp.task('includeHTMLs', function () {
+gulp.task('build-clean', function () {
+
+  // return rimraf('./dist/**/*', function () { console.log("Cleaned 'dist'."); });
+});
+
+gulp.task('build-html', function () {
 
   gulp.src('./prod/index.html')
     .pipe(fileInclude())
     .pipe(gulp.dest('./dist'));
 
-  gulp.src('./prod/views/gallery/index.html')
+  return gulp.src('./prod/views/gallery/index.html')
     .pipe(fileInclude())
     .pipe(gulp.dest('./dist/gallery'));
 });
 
-gulp.task('compileLESSs', function () {
+gulp.task('build-styles', function () {
 
   gulp.src('./prod/styles/index.less')
     .pipe(less())
@@ -29,7 +36,7 @@ gulp.task('compileLESSs', function () {
     .pipe(rename('styles.min.css'))
     .pipe(gulp.dest('./dist'));
 
-  gulp.src('./prod/styles/gallery/index.less')
+  return gulp.src('./prod/styles/gallery/index.less')
     .pipe(less())
     .pipe(cssnano({
       zindex: false,
@@ -39,7 +46,7 @@ gulp.task('compileLESSs', function () {
     .pipe(gulp.dest('./dist/gallery'));
 });
 
-gulp.task('uglifyJSs', function () {
+gulp.task('build-scripts', function () {
 
   gulp.src([
     './prod/scripts/hash-router.js',
@@ -53,7 +60,7 @@ gulp.task('uglifyJSs', function () {
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 
-  gulp.src([
+  return gulp.src([
     './prod/scripts/gallery/*.js',
   ])
     .pipe(concat('scripts.js'))
@@ -76,16 +83,25 @@ gulp.task('browserSync', function () {
   })
 });
 
+gulp.task('copy-others', function () {
+
+  gulp.src('./prod/images/**/*')
+    .pipe(gulp.dest('./dist/images'));
+
+  return gulp.src('./prod/others/**/*')
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('build', function (done) {
+
+  runSequence('build-clean', 'build-scripts', 'build-html', 'build-styles', 'copy-others', done);
+});
+
 gulp.task('watch', ['browserSync'], function () {
 
-  gulp.watch('./prod/styles/*.less', ['compileLESSs']);
-  gulp.watch('./prod/scripts/*.js', ['uglifyJSs']);
-  gulp.watch('./prod/views/*.html', ['includeHTMLs']);
-
-  gulp.watch('./prod/styles/gallery/*.less', ['compileLESSs']);
-  gulp.watch('./prod/scripts/gallery/*.js', ['uglifyJSs']);
-  gulp.watch('./prod/views/gallery/*.html', ['includeHTMLs']);
-  gulp.watch('./prod/views/gallery/*.json', ['includeHTMLs']);
+  gulp.watch('./prod/styles/**/*.less', ['build-styles']);
+  gulp.watch('./prod/scripts/**/*.js', ['build-scripts']);
+  gulp.watch('./prod/views/**/*.html', ['build-html']);
 
   gulp.watch('./dist/*', browserSync.reload);
 });
