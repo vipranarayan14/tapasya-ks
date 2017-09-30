@@ -1,6 +1,6 @@
 file_deploy() {
   
-  WORKING_DIR="./node_modules";
+  WORKING_DIR="./dist";
 
   if [ "$TRAVIS_BRANCH" == "master" ]; then
     REMOTE_DIR="~/public_html";
