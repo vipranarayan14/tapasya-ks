@@ -1,6 +1,6 @@
-file_deploy() {
-  
-  WORKING_DIR="./dist";
+ WORKING_DIR="./dist";
+
+file_deploy() {  
 
   if [ "$TRAVIS_BRANCH" == "master" ]; then
     REMOTE_DIR="~/public_html";
@@ -18,4 +18,5 @@ os_deploy() {
   
   npm install
   gulp build
+  git log --pretty=format:"\n %aD [%h] %s \n" > $WORKING_DIR/changelog.txt
 }
