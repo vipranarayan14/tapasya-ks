@@ -18,5 +18,5 @@ os_deploy() {
   
   npm install
   gulp build
-  git log --pretty=format:"\n %aD [%h] %s \n" > $WORKING_DIR/changelog.txt
+  git log --pretty=format:"%aD [%h] %s" > $WORKING_DIR/changelog.txt
 }
