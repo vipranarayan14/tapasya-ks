@@ -35,7 +35,7 @@ header {
       .p-dropdown .p-dropdown-btn {
         .button;
         transition: background-color 0.5s ease-out;
-        
+
         img {
           margin-bottom: -5px;
         }
@@ -49,6 +49,14 @@ header {
 
       .p-dropdown-content a:not(.hr-active-hash):hover {
         background-color: #d6d4d4;
+      }
+
+      .p-dropdown .p-dropdown-btn:after {
+        content: "";
+        background-image: url('/images/icons/sprite.png');
+        background-repeat: no-repeat;
+        background-position: -65px 16px;
+        padding: 16px 8px 16px 16px;
       }
     }
   }
