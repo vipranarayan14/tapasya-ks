@@ -1,5 +1,5 @@
 #home {
-  .home-banner {
+  .banner {
     height: 400px;
     position: relative;
     z-index: 1;
@@ -15,28 +15,28 @@
         font-weight: 700;
         line-height: 1.06;
       }
-      
+
       h2 {
         font-size: 24px;
         color: @custom-h2;
       }
     }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .4;
+      z-index: -1;
+      background-image: url('images/main/banners-bg/feather-with-slogan.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
   }
-  .home-banner::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: .4;
-    z-index: -1;
-    background-image: url('images/main/banners-bg/feather-with-slogan.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-  }
-  .description {
+  .content {
     padding-top: 20px;
     text-align: center;
   }
@@ -44,7 +44,7 @@
 
 @media only screen and (min-width: @screen-break-point) {
   #home {
-    .home-banner {
+    .banner {
       div {
         vertical-align: middle;
         h1 {
@@ -52,8 +52,8 @@
         }
       }
     }
-    
-    .description {
+
+    .content {
       width: 40%;
     }
   }
