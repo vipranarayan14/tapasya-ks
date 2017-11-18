@@ -36,8 +36,8 @@ gulp.task('build-html', function () {
 gulp.task('build-scripts', function () {
 
   gulp.src([
-    './prod/libs/hash-router.js',
-    paths.prod + '/main/main.js'
+    './prod/libs/*.js',
+    paths.prod + '/main/*.js'
   ])
     .pipe(concat('scripts.js'))
     .pipe(babel({
