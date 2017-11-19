@@ -5,6 +5,19 @@ const logoText = document.querySelector('.logo .logo-text');
 
 // /********* Comman *********/
 
+// Loading .banner background-images only when it comes into view
+
+initIntersectionObserver('.banner:not(#home-banner)', 0.5, entry => {
+
+  const target = entry.target;
+  const imgUrl = target.getAttribute('data-bg-src');
+
+  if (imgUrl) {
+
+    target.style.backgroundImage = 'url(' + imgUrl + ')';
+  }
+});
+
 // Open dropdown after closing others
 for (let i = 0, length = allDropdowns.length; i < length; i++) {
 
