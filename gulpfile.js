@@ -39,32 +39,24 @@ gulp.task('build-clean', function () {
 
 gulp.task('build-scripts', function () {
 
-  const babel = require('gulp-babel');
-  const concat = require('gulp-concat');
-  const uglify = require('gulp-uglify');
+  buildScripts(
 
-  gulp.src([
-    './prod/libs/*.js',
-    paths.prod + '/main/*.js'
-  ])
-    .pipe(concat('scripts.js'))
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(rename('scripts.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist'));
+    gulp.src([
+      './prod/libs/*.js',
+      paths.prod + '/main/*.js'
+    ]),
 
-  return gulp.src([
-    paths.gallery + '/**/*.js',
-  ])
-    .pipe(concat('scripts.js'))
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(rename('scripts.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/gallery'));
+    './dist'
+  );
+
+  return buildScripts(
+
+    gulp.src([
+      paths.gallery + '/**/*.js',
+    ]),
+
+    './dist/gallery'
+  );
 });
 
 gulp.task('build-html', function () {
@@ -121,3 +113,18 @@ gulp.task('watch', ['browserSync'], function () {
 
   gulp.watch('./dist/*', browserSync.reload);
 });
+
+function buildScripts(data, dest) {
+
+  const babel = require('gulp-babel');
+  const concat = require('gulp-concat');
+  const uglify = require('gulp-uglify');
+
+  data.pipe(concat('scripts.js'))
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(rename('scripts.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(dest));
+} 
