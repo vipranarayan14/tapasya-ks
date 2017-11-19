@@ -1,39 +1,47 @@
-const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
-const concat = require('gulp-concat');
-const cssnano = require('gulp-cssnano');
-const del = require('del');
-const fileInclude = require('gulp-file-include');
 const gulp = require('gulp');
-const less = require('gulp-less');
-const purifycss = require('gulp-purifycss');
 const rename = require('gulp-rename');
-const runSequence = require('run-sequence');
-const uglify = require('gulp-uglify');
 
-let paths = {
+const paths = {
   prod: './prod/views',
   gallery: './prod/views/gallery/gallery-ext'
 };
 
+gulp.task('browserSync', function () {
+
+  browserSync.init({
+    server: {
+      baseDir: 'dist'
+    }
+  })
+});
+
+gulp.task('build', function (done) {
+
+  const runSequence = require('run-sequence');
+
+  runSequence(
+    'build-clean',
+    'build-scripts',
+    'build-html',
+    'build-styles',
+    'copy-others',
+    done
+  );
+});
+
 gulp.task('build-clean', function () {
+
+  const del = require('del');
 
   return del(['./dist/**/*']);
 });
 
-gulp.task('build-html', function () {
-
-  gulp.src(paths.prod + '/main/main.html')
-    .pipe(fileInclude())
-    .pipe(rename('index.html'))
-    .pipe(gulp.dest('./dist'));
-
-  return gulp.src(paths.gallery + '/index.html')
-    .pipe(fileInclude())
-    .pipe(gulp.dest('./dist/gallery'));
-});
-
 gulp.task('build-scripts', function () {
+
+  const babel = require('gulp-babel');
+  const concat = require('gulp-concat');
+  const uglify = require('gulp-uglify');
 
   gulp.src([
     './prod/libs/*.js',
@@ -59,7 +67,25 @@ gulp.task('build-scripts', function () {
     .pipe(gulp.dest('./dist/gallery'));
 });
 
+gulp.task('build-html', function () {
+
+  const fileInclude = require('gulp-file-include');
+
+  gulp.src(paths.prod + '/main/main.html')
+    .pipe(fileInclude())
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest('./dist'));
+
+  return gulp.src(paths.gallery + '/index.html')
+    .pipe(fileInclude())
+    .pipe(gulp.dest('./dist/gallery'));
+});
+
 gulp.task('build-styles', function () {
+
+  const cssnano = require('gulp-cssnano');
+  const less = require('gulp-less');
+  const purifycss = require('gulp-purifycss');
 
   gulp.src(paths.prod + '/main/main.less')
     .pipe(less())
@@ -78,17 +104,6 @@ gulp.task('build-styles', function () {
     .pipe(gulp.dest('./dist/gallery'));
 });
 
-gulp.task('browserSync', function () {
-
-  browserSync.init({
-
-    server: {
-
-      baseDir: 'dist'
-    }
-  })
-});
-
 gulp.task('copy-others', function () {
 
   gulp.src('./prod/images/**/*')
@@ -96,11 +111,6 @@ gulp.task('copy-others', function () {
 
   return gulp.src('./prod/others/**/*')
     .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('build', function (done) {
-
-  runSequence('build-clean', 'build-scripts', 'build-html', 'build-styles', 'copy-others', done);
 });
 
 gulp.task('watch', ['browserSync'], function () {
