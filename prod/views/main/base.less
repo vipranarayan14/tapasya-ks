@@ -66,7 +66,7 @@ textarea:focus {
   background-color: @theme-500;
   height: 320px;
 
-  h1 {
+  > h1 {
     position: absolute;
     left: 50%;
     bottom: 0;
@@ -89,9 +89,10 @@ textarea:focus {
 }
 
 @media only screen and (min-width: @screen-break-point) {
-  .banner {
+  .banner:not(#home-banner) {
     height: 400px;
-    h1 {
+    
+    > h1 {
       font-size: 4em;
     }
   }
