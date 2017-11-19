@@ -1,22 +1,26 @@
 #contact {
-  position: relative;
-  height: 500px;
-  background-image: url('images/main/banners-bg/contact.jpg');
-  background-position: center center;
-  background-size: cover;
-  
-  .content {
-    .card-4;
-    .display-middle;
-    background: rgba(0, 0, 0, 0.6);
 
-    h1 {
-      color: #fff;
-      text-align: center;
-      font-size: 2em;
-      font-weight: 700;
+  .banner {
+    position: relative;
+    height: 500px;
+    background-image: url('images/main/banners-bg/contact.jpg');
+    background-position: center center;
+    background-size: cover;
+
+    .content {
+      .card-4;
+      .display-middle;
+      background: rgba(0, 0, 0, 0.6);
+
+      > h1 {
+        color: #fff;
+        text-align: center;
+        font-size: 2em;
+        font-weight: 700;
+      }
     }
   }
+
   form {
     padding: 8px 16px;
 
@@ -66,6 +70,8 @@
 
 @media only screen and (max-width: @screen-break-point) {
   #contact {
-    background-position: left center;
+    .banner {
+      background-position: left center;
+    }
   }
 }
