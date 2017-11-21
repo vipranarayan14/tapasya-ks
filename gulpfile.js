@@ -77,11 +77,9 @@ gulp.task('build-styles', function () {
 
   const cssnano = require('gulp-cssnano');
   const less = require('gulp-less');
-  const purifycss = require('gulp-purifycss');
 
   gulp.src(paths.prod + '/main/main.less')
     .pipe(less())
-    .pipe(purifycss(['./dist/index.html', './dist/scripts.min.js']))
     .pipe(cssnano())
     .pipe(rename('styles.min.css'))
     .pipe(gulp.dest('./dist'));
