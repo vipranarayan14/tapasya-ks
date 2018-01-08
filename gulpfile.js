@@ -34,7 +34,12 @@ gulp.task('build-clean', function () {
 
   const del = require('del');
 
-  return del(['./dist/**/*']);
+  return del(
+    ['./dist/**/*'],
+    {
+      dot: true
+    }
+  );
 });
 
 gulp.task('build-scripts', function () {
