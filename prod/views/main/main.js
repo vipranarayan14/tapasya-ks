@@ -2,7 +2,9 @@ const navBtns = document.querySelectorAll('.navLink');
 const allDropdowns = document.querySelectorAll('.p-dropdown');
 const menuIcon = document.querySelector('.menu-icon');
 const logoText = document.querySelector('.logo .logo-text');
-
+const bullentin = document.querySelector('#bulletin');
+const bullentinOpener = document.querySelector('.bulletin-opener');
+const bullentinHasArticle = bullentin.querySelector('article');
 // /********* Comman *********/
 
 // Loading .banner background-images only when it comes into view
@@ -36,6 +38,7 @@ function closeAllDropdowns() {
   }
 }
 
+// HashRouter config
 HashRouter.init({
   defaultNavPageID: 'home',
   navPageSelector: 'sub-page',
@@ -54,6 +57,39 @@ HashRouter.init({
     }
   ]
 });
+
+// Bullentin
+function showBulletin() {
+
+  bullentin.classList.add('bulletin-open');
+
+}
+
+window.addEventListener('load', () => {
+
+  if (bullentinHasArticle) {
+
+    showBulletin();
+  }
+});
+
+bullentinOpener.addEventListener('click', (e) => {
+
+  e.preventDefault();
+
+  showBulletin();
+});
+
+bullentin.addEventListener('click', () => {
+
+  if (event.target == event.currentTarget) {
+
+    bullentin.classList.remove('bulletin-open');
+
+  }
+
+});
+
 
 /**************************/
 
