@@ -1,0 +1,42 @@
+#bulletin {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(35, 35, 35, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  overflow-y: auto;
+  display: none;
+
+  &.bulletin-open{
+    display: block;    
+  }
+
+  .board {
+    .card;
+    border-radius: 3px;
+    text-align: center;
+    width: 80%;
+    position: relative;
+    top: 12%;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+
+    .articles-container {
+      width: 95%;
+      margin: 0 auto;
+      text-align: center;
+      
+      article {
+        width: 100%;
+      }
+      
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
