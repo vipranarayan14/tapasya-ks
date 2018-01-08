@@ -2,7 +2,7 @@
 
 file_deploy() {  
 
-  if [ "$TRAVIS_BRANCH" == "master" ]; then
+  if [ "$TRAVIS_BRANCH" == "master" -o "$TRAVIS_BRANCH" == "feature"]; then
     REMOTE_DIR="~/public_html";
   elif [ "$TRAVIS_BRANCH" == "development" ]; then
     REMOTE_DIR="~/public_html_alpha";
