@@ -2,7 +2,7 @@ WORKING_DIR="./dist";
 
 file_deploy() {
     
-    if [ "$TRAVIS_BRANCH" == "master"]; then
+    if [ "$TRAVIS_BRANCH" == "master" ]; then
        
         REMOTE_DIR="~/public_html";
        
