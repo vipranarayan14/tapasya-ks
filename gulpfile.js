@@ -99,7 +99,12 @@ gulp.task('copy-others', function () {
   gulp.src('./prod/images/**/*')
     .pipe(gulp.dest('./dist/images'));
 
-  return gulp.src('./prod/others/**/*')
+  return gulp.src(
+    ['./prod/others/**/*'],
+    {
+      dot: true
+    }
+  )
     .pipe(gulp.dest('./dist'));
 });
 
