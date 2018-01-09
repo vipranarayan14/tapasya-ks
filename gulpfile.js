@@ -1,41 +1,14 @@
-const gulp = require('gulp');
-const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
-const concat = require('gulp-concat');
-const cssnano = require('gulp-cssnano');
-const fileInclude = require('gulp-file-include');
-const less = require('gulp-less');
-const purifycss = require('gulp-purifycss');
+const gulp = require('gulp');
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
 
-gulp.task('includeHTMLs', function () {
-  gulp.src('./prod/index.html')
-    .pipe(fileInclude())
-    .pipe(gulp.dest('./dist'))
-});
-
-gulp.task('compileLESSs', function () {
-  gulp.src('./prod/styles/index.less')
-    .pipe(less())
-    .pipe(purifycss(['./dist/index.html', './dist/scripts.min.js']))
-    .pipe(cssnano())
-    .pipe(rename('styles.min.css'))
-    .pipe(gulp.dest('./dist'))
-});
-
-gulp.task('uglifyJSs', function () {
-  gulp.src('./prod/scripts/*.js')
-    .pipe(concat('scripts.js'))
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(rename('scripts.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist'));
-});
+const paths = {
+  prod: './prod/views',
+  gallery: './prod/views/gallery/gallery-ext'
+};
 
 gulp.task('browserSync', function () {
+
   browserSync.init({
     server: {
       baseDir: 'dist'
@@ -43,10 +16,123 @@ gulp.task('browserSync', function () {
   })
 });
 
+gulp.task('build', function (done) {
+
+  const runSequence = require('run-sequence');
+
+  runSequence(
+    'build-clean',
+    'build-scripts',
+    'build-html',
+    'build-styles',
+    'copy-others',
+    done
+  );
+});
+
+gulp.task('build-clean', function () {
+
+  const del = require('del');
+
+  return del(
+    ['./dist/**/*'],
+    {
+      dot: true
+    }
+  );
+});
+
+gulp.task('build-scripts', function () {
+
+  buildScripts(
+
+    gulp.src([
+      './prod/libs/*.js',
+      paths.prod + '/main/*.js'
+    ]),
+
+    './dist'
+  );
+
+  return buildScripts(
+
+    gulp.src([
+      paths.gallery + '/**/*.js',
+    ]),
+
+    './dist/gallery'
+  );
+});
+
+gulp.task('build-html', function () {
+
+  const fileInclude = require('gulp-file-include');
+
+  gulp.src(paths.prod + '/main/main.html')
+    .pipe(fileInclude())
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest('./dist'));
+
+  return gulp.src(paths.gallery + '/index.html')
+    .pipe(fileInclude())
+    .pipe(gulp.dest('./dist/gallery'));
+});
+
+gulp.task('build-styles', function () {
+
+  const cssnano = require('gulp-cssnano');
+  const less = require('gulp-less');
+
+  gulp.src(paths.prod + '/main/main.less')
+    .pipe(less())
+    .pipe(cssnano())
+    .pipe(rename('styles.min.css'))
+    .pipe(gulp.dest('./dist'));
+
+  return gulp.src(paths.gallery + '/index.less')
+    .pipe(less())
+    .pipe(cssnano({
+      zindex: false,
+      reduceIdents: false
+    }))
+    .pipe(rename('styles.min.css'))
+    .pipe(gulp.dest('./dist/gallery'));
+});
+
+gulp.task('copy-others', function () {
+
+  gulp.src('./prod/images/**/*')
+    .pipe(gulp.dest('./dist/images'));
+
+  return gulp.src(
+    ['./prod/others/**/*'],
+    {
+      dot: true
+    }
+  )
+    .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('watch', ['browserSync'], function () {
-  gulp.watch('./prod/styles/*.less', ['compileLESSs']);
-  gulp.watch('./prod/scripts/*.js', ['uglifyJSs']);
-  gulp.watch('./prod/views/*.html', ['includeHTMLs']);
+
+  gulp.watch(paths.prod + '/**/*.less', ['build-styles']);
+  gulp.watch(paths.prod + '/**/*.js', ['build-scripts']);
+  gulp.watch(paths.prod + '/**/*.html', ['build-html']);
 
   gulp.watch('./dist/*', browserSync.reload);
 });
+
+function buildScripts(data, dest) {
+
+  const babel = require('gulp-babel');
+  const concat = require('gulp-concat');
+  const uglify = require('gulp-uglify');
+
+  data.pipe(concat('scripts.js'))
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(rename('scripts.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(dest));
+} 

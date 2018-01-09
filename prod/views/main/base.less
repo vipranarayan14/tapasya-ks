@@ -1,0 +1,99 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+h1,
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+header,
+main,
+footer {
+  font-family: 'Bitter', serif;
+}
+
+main {
+  height: 85%;
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 50px;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+.sub-page:not(#home) {
+  position: relative;
+  .animate-top;
+}
+
+.page .banner,
+.sub-page .banner {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner:not(#home-banner) {
+  position: relative;
+  background-color: @theme-500;
+  height: 320px;
+
+  > h1 {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    padding: 8px 16px;
+    color: #fff;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.content {
+  color: #212121;
+  width: 80%;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+@media only screen and (min-width: @screen-break-point) {
+  .banner:not(#home-banner) {
+    height: 400px;
+    
+    > h1 {
+      font-size: 4em;
+    }
+  }
+}

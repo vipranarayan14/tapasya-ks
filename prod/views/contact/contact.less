@@ -1,0 +1,76 @@
+#contact {
+
+  .banner {
+    position: relative;
+    height: 500px;
+    background-position: center center;
+    background-size: cover;
+
+    .content {
+      .card-4;
+      .display-middle;
+      background: rgba(0, 0, 0, 0.6);
+
+      > h1 {
+        color: #fff;
+        text-align: center;
+        font-size: 2em;
+        font-weight: 700;
+      }
+    }
+  }
+
+  form {
+    padding: 8px 16px;
+
+    .input-text,
+    input[type='submit'] {
+      padding: 8px;
+      display: block;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      width: 100%;
+    }
+
+    .input-text {
+      background-color: transparent;
+
+      &::-webkit-input-placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+      &:-moz-placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+      &::-moz-placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+      &:-ms-input-placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+      &::-ms-input-placeholder {
+        color: inherit;
+        opacity: 0.5;
+      }
+      margin: 10px 0;
+      color: #fff;
+      resize: none;
+    }
+
+    input[type='submit'] {
+      background-color: #ddd;
+      border-color: #ddd;
+    }
+  }
+}
+
+@media only screen and (max-width: @screen-break-point) {
+  #contact {
+    .banner {
+      background-position: left center;
+    }
+  }
+}
