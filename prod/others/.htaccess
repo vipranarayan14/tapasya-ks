@@ -1,19 +1,19 @@
 RewriteEngine on
 
-RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-RewriteCond %{HTTP_REFERER} !^http://tapasyaks.org/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^http://tapasyaks.org$      [NC]
-RewriteCond %{HTTP_REFERER} !^http://www.tapasyaks.org/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^http://www.tapasyaks.org$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://tapasyaks.org/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://tapasyaks.org$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.tapasyaks.org/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.tapasyaks.org$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://tapasyaks.org/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://tapasyaks.org$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.tapasyaks.org/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.tapasyaks.org$ [NC]
+RewriteCond %{HTTP_REFERER} !^https://tapasyaks.org/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^https://tapasyaks.org$ [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.tapasyaks.org/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.tapasyaks.org$ [NC]
 RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
 
 DirectoryIndex index.html
