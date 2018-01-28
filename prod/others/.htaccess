@@ -1,19 +1,16 @@
 RewriteEngine on
 
+RewriteCond %{HTTP_HOST} ^alpha\.tapasyaks\.org  [NC]
+RewriteRule ^(.*) - [L]
+
 RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-RewriteCond %{HTTP_REFERER} !^http://tapasyaks.org/.*$ [NC]
-RewriteCond %{HTTP_REFERER} !^http://tapasyaks.org$ [NC]
-RewriteCond %{HTTP_REFERER} !^http://www.tapasyaks.org/.*$ [NC]
-RewriteCond %{HTTP_REFERER} !^http://www.tapasyaks.org$ [NC]
-RewriteCond %{HTTP_REFERER} !^https://tapasyaks.org/.*$ [NC]
-RewriteCond %{HTTP_REFERER} !^https://tapasyaks.org$ [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.tapasyaks.org/.*$ [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.tapasyaks.org$ [NC]
-RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !tapasyaks\.org [NC]
+RewriteRule \.(gif|jpg|jpeg|bmp|zip|rar|mp3|flv|swf|xml|php|png|css|pdf)$ - [NC,F,L]
 
 DirectoryIndex index.html
