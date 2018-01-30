@@ -4,7 +4,7 @@ env:
   - secure: VRtsVO+iu27RggI9M75tLaQjkNm6TfCWQcwwH6VGh6PnkSn3eAXWHgTujS7awPF751oZsENtWtY3xYtCJImSt3IxfDMF2LNsuDr1ltlHyvYsmXXZoOJ4MThYAj+g/6thUXNx5Nu/+5771NxNxfxpv7TUOkbeJ21zue7G4WXRHKukWMcF994AS7Adug/Y1TcBUSrwhP/gFrRmCeFUJd5K1F1CCYRc3t9hbfzQqVMNjUuO3FXPjgMgJNnimErhEcYVl8p0w/agi1jdtPkvUYM3P80ZxV4GOw7tOPUjKBta7f0Y8e+/O9slF4IXEVxNIFkun72JwZqKuVkAMY9h4cDhXFKKLrRdiHIBTUyNd0Yb0NQRT+T+2cnoMOuOHPvDHqsTUBqSU0VRgBoKsmMzByTitJzPeKupWWl5i7Ktc2Zw2j5MAdY914uYWf6ZZfY1j4TJEArnygWb0S45RajzilGdE+7RNRY57J7Pw3zUPAPmOdTcJsjNMHKcNeWoVjA+rQcVb3CUzVvAEG9PaKMT9UZZt7MEX6KsemqVJWZGDCdfdu/gdxMo0xNe6lrII93d2BwxF6AN3+2CJ5sbFR0O9GEgZw0hHYWAYt5TkqnnFkluKcio8JLcMCzhjJlmJVuwAsy8D7NE3sqf9zwVpziMkWAVfum5y1nnbSVDLR4t+z95wOA=
   - secure: CxDmzBR9oKePAlwnM92hSwShi5uM7DPkJGTwSB/EOg4mDwXiNI/i2Q6O6LtKSXlpfIz5Gvka8qhv0rQtAU06kGKOo6y/8JeMOGthvblnx2JLV3j9bSCmGo8SRxP21BMCEOGQOGaLV3FNSwuygv/F/7t1helpcAKfosvKUqYAgZr97jZL9r7Q61eboHJ5r/R/ux/5VISg9nW36lHxd73rmmHkWj34T+K4AzDQ9i+htsExt1zDSt9xSuvVzx9G7m4ewIvmUaHPZZHUM2qmkLoIGfh2F4QVlkvFR5dQYoZkcFEjlaLcLqV2Uj7ggPUtTRUlyv7Qt4InVJfvQQq4ug0cQPkJHL4P24hI/qn8yz9DGt1icHZOavylgxdO1NlfUpIOq5gUJHJ/FUxP1nPyxQp9RqBtc3snvJEI0eM+SVa+MUY/jR9pPNXlDGr8zWJXXv0P/rNLeBDVMX1RzTQ3tFgFsQiE19UKTj++D9L/90F09iCP3xOg5b1NinqDv5CuBEvcIMTGy3zPhZYHgQqY2fSI/O/tSCoPnhqloObwjGYOhoGKSmoL5BTM33GMaXRBZ9Ibpxpq7tTMVZ9NRNn2rrcTHaQqUvHXKqk1G8apOHO7DGNYUur5iWGNSeygkc1TgzUVD9qG+6KXH6YBgn4zYZeJxN5TWLQ5q0XU0Of83nEW+Pg=
 after_success:
-- ". deploy.sh ; file_deploy"
+- ". ./ci/deploy.sh ; file_deploy"
 before_install:
 - sudo apt-get -qq update
 - sudo apt-get install -y lftp
@@ -12,4 +12,4 @@ language: node_js
 node_js:
 - stable
 script:
-- ". deploy.sh ; os_deploy"
+- ". ./ci/deploy.sh ; os_deploy"

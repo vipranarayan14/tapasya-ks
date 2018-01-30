@@ -24,5 +24,5 @@ file_deploy() {
 os_deploy() {
     
     npm install;
-    . build.sh;
+    . ./ci/build.sh;
 }
