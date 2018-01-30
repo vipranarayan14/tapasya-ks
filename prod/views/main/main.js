@@ -1,7 +1,6 @@
 const navBtns = document.querySelectorAll('.navLink');
 const allDropdowns = document.querySelectorAll('.p-dropdown');
 const menuIcon = document.querySelector('.menu-icon');
-const logoText = document.querySelector('.logo .logo-text');
 const bullentin = document.querySelector('#bulletin');
 const bullentinOpener = document.querySelector('.bulletin-opener');
 const bullentinHasArticle = bullentin.querySelector('article');
@@ -17,7 +16,9 @@ initIntersectionObserver('.banner:not(#home-banner)', 0.5, entry => {
   if (imgUrl) {
 
     target.style.backgroundImage = 'url(' + imgUrl + ')';
+
   }
+
 });
 
 // Open dropdown after closing others
