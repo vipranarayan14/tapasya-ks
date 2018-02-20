@@ -120,7 +120,7 @@ gulp.task('start', function () {
 
 });
 
-gulp.task('watch', ['browserSync'], function () {
+gulp.task('watch', ['start'], function () {
 
   gulp.watch(`${paths.prod}/**/*.less`, ['build-styles']);
   gulp.watch(`${paths.prod}/**/*.js`, ['build-scripts']);
