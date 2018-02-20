@@ -5558,6 +5558,10 @@ vm-browserify@~0.0.1:
   dependencies:
     indexof "0.0.1"
 
+vshowbox@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/vshowbox/-/vshowbox-3.1.0.tgz#ecdccef431cddddcce4c3734c83c07a082bd20c7"
+
 when@^3.7.8:
   version "3.7.8"
   resolved "https://registry.yarnpkg.com/when/-/when-3.7.8.tgz#c7130b6a7ea04693e842cdc9e7a1f2aa39a39f82"
