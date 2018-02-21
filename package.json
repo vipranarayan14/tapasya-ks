@@ -25,6 +25,7 @@
     "browserify": "16.1.0",
     "del": "3.0.0",
     "eslint": "4.18.1",
+    "glob": "^7.1.2",
     "gulp": "3.9.1",
     "gulp-cssnano": "2.1.2",
     "gulp-file-include": "2.0.1",
