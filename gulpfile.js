@@ -7,18 +7,38 @@ const paths = {
   prod: './prod'
 };
 
-const buildScripts = (files, dest) => {
+const buildHtml = (src, dest) => {
 
-  const browserify = require('browserify');
-  const uglify = require('gulp-uglify');
-  const source = require('vinyl-source-stream');
-  const buffer = require('vinyl-buffer');
+  if (!src) {
+
+    return;
+
+  }
+
+  const fileInclude = require('gulp-file-include');
+
+  gulp.src(src)
+    .pipe(fileInclude())
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest(dest));
+
+};
+
+const buildScripts = (src, dest) => {
+
+  const glob = require('glob');
+  const files = glob.sync(src);
 
   if (!files.length) {
 
     return;
 
   }
+
+  const browserify = require('browserify');
+  const uglify = require('gulp-uglify');
+  const source = require('vinyl-source-stream');
+  const buffer = require('vinyl-buffer');
 
   browserify(files)
     .transform('babelify')
@@ -30,18 +50,19 @@ const buildScripts = (files, dest) => {
 
 };
 
-const buildStyles = (data, dest) => {
+const buildStyles = (src, dest) => {
 
-  const cssnano = require('gulp-cssnano');
-  const less = require('gulp-less');
-
-  if (!data) {
+  if (!src) {
 
     return;
 
   }
 
-  data.pipe(less())
+  const cssnano = require('gulp-cssnano');
+  const less = require('gulp-less');
+
+  gulp.src(src)
+    .pipe(less())
     .pipe(cssnano({
       reduceIdents: false,
       zindex: false
@@ -78,33 +99,35 @@ gulp.task('build-clean', function () {
 
 gulp.task('build-scripts', function () {
 
-  const glob = require('glob');
-  const files = glob.sync(`${paths.prod}/scripts/*.js`);
-
-  buildScripts(
-    files,
-    './dist'
-  );
+  buildScripts(`${paths.prod}/scripts/*.js`, './dist');
 
 });
 
 gulp.task('build-html', function () {
 
-  const fileInclude = require('gulp-file-include');
-
-  gulp.src(`${paths.prod}/index.html`)
-    .pipe(fileInclude())
-    .pipe(rename('index.html'))
-    .pipe(gulp.dest('./dist'));
+  buildHtml(`${paths.prod}/index.html`, './dist');
 
 });
 
 gulp.task('build-styles', function () {
 
-  buildStyles(
-    gulp.src(`${paths.prod}/index.less`),
-    './dist'
-  );
+  buildStyles(`${paths.prod}/index.less`, './dist');
+
+});
+
+gulp.task('build-pages', () => {
+
+  dirs(paths.pages).forEach(dir => {
+
+    const dest = `dist/pages/${dir}`;
+
+    buildScripts(`${paths.pages}/${dir}/*.js`, dest);
+
+    buildStyles(`${paths.pages}/${dir}/index.less`, dest);
+
+    buildHtml(`${paths.pages}/${dir}/index.html`, dest);
+
+  });
 
 });
 
@@ -121,40 +144,6 @@ gulp.task('copy-others', function () {
 
 });
 
-gulp.task('build-pages', () => {
-
-  const glob = require('glob');
-  const fileInclude = require('gulp-file-include');
-
-  dirs(paths.pages).forEach(dir => {
-
-    const scriptFiles = glob.sync(`${paths.pages}/${dir}/*.js`);
-    const indexFile = glob.sync(`${paths.pages}/${dir}/index.html`);
-    const styleFile = glob.sync(`${paths.pages}/${dir}/index.less`);
-
-    buildScripts(
-      scriptFiles,
-      `dist/pages/${dir}`
-    );
-
-    buildStyles(
-      gulp.src(styleFile),
-      `dist/pages/${dir}`
-    );
-
-    if (indexFile) {
-
-      gulp.src(indexFile)
-        .pipe(fileInclude())
-        .pipe(rename('index.html'))
-        .pipe(gulp.dest(`dist/pages/${dir}`));
-
-    }
-
-  });
-
-});
-
 gulp.task('build', function (done) {
 
   const runSequence = require('run-sequence');
@@ -164,8 +153,8 @@ gulp.task('build', function (done) {
     'build-scripts',
     'build-html',
     'build-styles',
-    'copy-others',
     'build-pages',
+    'copy-others',
     done
   );
 
