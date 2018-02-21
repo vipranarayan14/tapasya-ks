@@ -1,7 +1,9 @@
 import { vHashRouter } from 'vhashrouter';
 
 vHashRouter.init({
+
   defaultRoute: '#/home',
+
   routes: [
 
     {
@@ -40,8 +42,22 @@ vHashRouter.init({
     },
 
     {
+      contentUrl: '/pages/gallery/index.html',
       hash: '#/gallery',
+      resources: {
+        scripts: ['/pages/gallery/scripts.min.js'],
+        styles: ['/pages/gallery/styles.min.css']
+      },
       viewId: 'gallery'
+    },
+
+    {
+      contentUrl: '/pages/bulletin/index.html',
+      hash: '#/events',
+      resources: {
+        styles: ['/pages/bulletin/styles.min.css']
+      },
+      viewId: 'events'
     },
 
     {
@@ -50,5 +66,7 @@ vHashRouter.init({
     },
 
   ],
+
   viewSelector: 'sub-page'
+
 });
