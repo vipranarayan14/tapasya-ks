@@ -36,7 +36,7 @@
     "vinyl-source-stream": "2.0.0"
   },
   "dependencies": {
-    "vhashrouter": "2.0.1",
+    "vhashrouter": "2.1.0",
     "vshowbox": "3.1.0"
   }
 }
