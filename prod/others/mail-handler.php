@@ -80,6 +80,7 @@ if ($response != null && $response->success && isset($_POST['email'])) {
 
     $email_message .= "<p><b>Name:</b> " . clean_string($full_name) . "</p>";
     $email_message .= "<p><b>Email:</b> " . clean_string($email_from) . "</p>";
+    $email_message .= "<p><b>REMOTE_ADDR:</b> <br>" . $_SERVER["REMOTE_ADDR"] . "</p>";
     $email_message .= "<p><b>Message:</b> <br>" . clean_string($message) . "</p>";
     $email_message .= "</body></html>";
     // To send HTML mail, the Content-type header must be set
