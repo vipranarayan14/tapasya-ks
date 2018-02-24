@@ -1,7 +1,27 @@
 <?php
-if (isset($_POST['email'])) {
+
+require_once "recaptchalib.php";
+
+// your secret key
+$secret = "6LffLkgUAAAAAJa7iUCPWLatm8G0hjkw74drnyO0";
+ 
+// empty response
+$response = null;
+ 
+// check secret key
+$reCaptcha = new ReCaptcha($secret);
+
+// if submitted check response
+if ($_POST["g-recaptcha-response"]) {
+    $response = $reCaptcha->verifyResponse(
+        $_SERVER["REMOTE_ADDR"],
+        $_POST["g-recaptcha-response"]
+    );
+}
+ 
+if ($response != null && $response->success && isset($_POST['email'])) {
     // EDIT THE 2 LINES BELOW AS REQUIRED
-    $email_to      = "tapasyakalasampradaya@gmail.com";
+    $email_to      = "vipranarayan14@gmail.com";
     $email_subject = "A Message from TKS Website visitor!";
 
     function died($error)
@@ -25,12 +45,11 @@ if (isset($_POST['email'])) {
     $message    = $_POST['message']; // required
     $error_message = "";
     $email_exp     = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+    $string_exp = "/^[A-Za-z .'-]+$/";    
 
     if (!preg_match($email_exp, $email_from)) {
         $error_message .= 'The Email Address you entered does not appear to be valid.';
     }
-
-    $string_exp = "/^[A-Za-z .'-]+$/";
 
     if (!preg_match($string_exp, $full_name)) {
         $error_message .= 'The Name you entered does not appear to be valid.';
