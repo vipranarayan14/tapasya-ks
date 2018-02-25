@@ -52,10 +52,10 @@ vHashRouter.init({
     },
 
     {
-      contentUrl: '/pages/bulletin/index.html',
+      contentUrl: '/pages/events/index.html',
       hash: '#/events',
       resources: {
-        styles: ['/pages/bulletin/styles.min.css']
+        styles: ['/pages/events/styles.min.css']
       },
       viewId: 'events'
     },
