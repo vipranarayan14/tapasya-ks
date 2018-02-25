@@ -28,12 +28,12 @@
       padding: 8px;
       display: block;
       border: none;
-      border-bottom: 1px solid #ccc;
       width: 100%;
     }
 
     .input-text {
       background-color: transparent;
+      border-bottom: 1px solid #ccc;
 
       &::-webkit-input-placeholder {
         color: inherit;
@@ -63,6 +63,10 @@
     input[type='submit'] {
       background-color: #ddd;
       border-color: #ddd;
+    }
+
+    input[name='subject'] {
+      display: none;
     }
   }
 }
