@@ -11,16 +11,21 @@
 </head>
 
 <body>
+
   @@include('views/loader/loader.html')
-  @@include('views/events/events.html')
   @@include('views/header/header.html')
+
   <main>
+
     @@include('views/home/home.html')
     @@include('views/about/about.html')
     @@include('views/activities/activities.html')
-    @@include('views/contact/contact.html')
     @@include('views/gallery/gallery.html')
+    @@include('views/events/events.html')    
+    @@include('views/contact/contact.html')
+
   </main>
+  
   @@include('views/footer/footer.html')
 
   <link href="styles.min.css" rel="stylesheet">
