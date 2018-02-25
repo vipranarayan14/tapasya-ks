@@ -38,6 +38,6 @@
   },
   "dependencies": {
     "vhashrouter": "2.1.0",
-    "vshowbox": "3.1.0"
+    "vshowbox": "4.0.0"
   }
 }
