@@ -1,5 +1,5 @@
 import { vShowBox } from 'vshowbox';
-console.log(document.querySelector('#vShowBox'));
+
 vShowBox({
 
   container: document.querySelector('#vShowBox'),
@@ -8,47 +8,58 @@ vShowBox({
 
     {
       caption: 'Indu Varma with Smt. Kamala Lakshman at the Rotary conference Columbu.',
-      content: 'images/main/gallery/0002IMG.jpg'
+      content: 'images/gallery/slide/0002IMG-slide.jpg',
+      preview: 'images/gallery/preview/0002IMG-preview.jpg'
     },
     {
       caption: 'Tapasya\'s first annversy function;  Janardhanan felicitates Guru Kittappapillai.',
-      content: 'images/main/gallery/0004IMG.jpg'
+      content: 'images/gallery/slide/0004IMG-slide.jpg',
+      preview: 'images/gallery/preview/0004IMG-preview.jpg'
     },
     {
       caption: 'Smt. T. Mukta performing at a Tapasya function.',
-      content: 'images/main/gallery/0005IMG.jpg'
+      content: 'images/gallery/slide/0005IMG-slide.jpg',
+      preview: 'images/gallery/preview/0005IMG-preview.jpg'
     },
     {
       caption: 'Documentation of Tyagesh Kuravanji with T R Tilakam, a Padmashree awardee, for the South Zone Cultural Centre.',
-      content: 'images/main/gallery/0006IMG.jpg'
+      content: 'images/gallery/slide/0006IMG-slide.jpg',
+      preview: 'images/gallery/preview/0006IMG-preview.jpg'
     },
     {
       caption: 'Pudukottai paramparyam from Marainduvaraum Marabugal.',
-      content: 'images/main/gallery/0007IMG.jpg'
+      content: 'images/gallery/slide/0007IMG-slide.jpg',
+      preview: 'images/gallery/preview/0007IMG-preview.jpg'
     },
     {
       caption: 'Former Governor of Tamilnadu releases Marainduvarum Marabugal.',
-      content: 'images/main/gallery/0008IMG.jpg'
+      content: 'images/gallery/slide/0008IMG-slide.jpg',
+      preview: 'images/gallery/preview/0008IMG-preview.jpg'
     },
     {
       caption: 'Former Governor of Tamilnadu felicitates Sri Subbaraya Pillai.',
-      content: 'images/main/gallery/0009IMG.jpg'
+      content: 'images/gallery/slide/0009IMG-slide.jpg',
+      preview: 'images/gallery/preview/0009IMG-preview.jpg'
     },
     {
       caption: 'Former Governor of Tamilnadu felicitates Smt. T R Tilakam.',
-      content: 'images/main/gallery/0010IMG.jpg'
+      content: 'images/gallery/slide/0010IMG-slide.jpg',
+      preview: 'images/gallery/preview/0010IMG-preview.jpg'
     },
     {
       caption: 'Tyagesh Kuravanji.',
-      content: 'images/main/gallery/0003IMG.jpg'
+      content: 'images/gallery/slide/0003IMG-slide.jpg',
+      preview: 'images/gallery/preview/0003IMG-preview.jpg'
     },
     {
       caption: 'Indu Varma at a LecDem on rare Tanjore compositions.',
-      content: 'images/main/gallery/0011IMG.jpg'
+      content: 'images/gallery/slide/0011IMG-slide.jpg',
+      preview: 'images/gallery/preview/0011IMG-preview.jpg'
     },
     {
       caption: '',
-      content: 'images/main/gallery/0001IMG.jpg'
+      content: 'images/gallery/slide/0001IMG-slide.jpg',
+      preview: 'images/gallery/preview/0001IMG-preview.jpg'
     }
 
   ]
