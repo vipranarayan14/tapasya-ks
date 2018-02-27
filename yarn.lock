@@ -5518,9 +5518,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vhashrouter@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vhashrouter/-/vhashrouter-2.1.0.tgz#c0f264e4260d57c2334208ff24582e12420d9674"
+vhashrouter@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vhashrouter/-/vhashrouter-2.1.1.tgz#f8a7e99f3993571c600a6239920a66d78ccaa9cb"
 
 vinyl-buffer@1.0.1:
   version "1.0.1"
