@@ -72,7 +72,7 @@ vShowBox({
       preview: 'images/gallery/preview/DSC_0751-preview.jpg'
     },
     {
-      caption: 'With Sri Tiruvarur Girish',
+      caption: 'Tapasya Director Jayanthi Varma with Sri Tiruvarur Girish',
       content: 'images/gallery/slide/DSC_0775-slide.jpg',
       preview: 'images/gallery/preview/DSC_0775-preview.jpg'
     },
