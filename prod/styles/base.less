@@ -15,7 +15,6 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;
   line-height: 1.5;
 }
 
@@ -26,6 +25,21 @@ h2 {
   margin: 10px 0;
 }
 
+.views-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer {
+  flex-shrink: 0;
+}
+
+main {
+  flex-grow: 1;
+}
+
 header,
 main,
 footer {
@@ -33,10 +47,8 @@ footer {
 }
 
 main {
-  height: 85%;
   width: 100%;
   overflow: auto;
-  margin-bottom: 50px;
 }
 
 input,
