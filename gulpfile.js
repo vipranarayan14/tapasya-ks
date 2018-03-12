@@ -2,6 +2,8 @@ const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
 const rename = require('gulp-rename');
 
+require('dotenv').config();
+
 const paths = {
   pages: './prod/pages',
   prod: './prod'
@@ -72,6 +74,14 @@ const buildStyles = (src, dest) => {
 
 };
 
+const getCurrentBranch = () => new Promise(resolve => {
+
+  const git = require('simple-git');
+
+  git().raw(['describe', '--contains', '--all', 'HEAD'], (err, result) => resolve(result));
+
+});
+
 const dirs = url => {
 
   const fs = require('fs');
@@ -85,7 +95,7 @@ const dirs = url => {
 
 };
 
-gulp.task('build-clean', function () {
+gulp.task('build-clean', () => {
 
   const del = require('del');
 
@@ -97,19 +107,19 @@ gulp.task('build-clean', function () {
 
 });
 
-gulp.task('build-scripts', function () {
+gulp.task('build-scripts', () => {
 
   buildScripts(`${paths.prod}/scripts/*.js`, './dist');
 
 });
 
-gulp.task('build-html', function () {
+gulp.task('build-html', () => {
 
   buildHtml(`${paths.prod}/index.html`, './dist');
 
 });
 
-gulp.task('build-styles', function () {
+gulp.task('build-styles', () => {
 
   buildStyles(`${paths.prod}/index.less`, './dist');
 
@@ -144,7 +154,7 @@ gulp.task('copy-others', function () {
 
 });
 
-gulp.task('build', function (done) {
+gulp.task('build', done => {
 
   const runSequence = require('run-sequence');
 
@@ -160,7 +170,7 @@ gulp.task('build', function (done) {
 
 });
 
-gulp.task('start', function () {
+gulp.task('start', () => {
 
   browserSync.init({
     server: {
@@ -170,12 +180,43 @@ gulp.task('start', function () {
 
 });
 
-gulp.task('watch', ['start'], function () {
+gulp.task('watch', ['start'], () => {
 
   gulp.watch(`${paths.prod}/**/*.less`, ['build-styles']);
   gulp.watch(`${paths.prod}/**/*.js`, ['build-scripts']);
   gulp.watch(`${paths.prod}/**/*.html`, ['build-html']);
 
   gulp.watch('./dist/*', browserSync.reload);
+
+});
+
+gulp.task('deploy', () => {
+
+  const ftpSync = require('ftpsync');
+
+  ftpSync.settings = {
+
+    host: process.env.FTP_HOST,
+    local: './dist',
+    pass: process.env.FTP_PASS,
+    user: process.env.FTP_USER
+
+  };
+
+  getCurrentBranch().then(branch => {
+
+    if (branch === 'master' || branch === 'feature') {
+
+      ftpSync.settings.remote = 'public_html';
+
+    } else {
+
+      ftpSync.settings.remote = 'public_html_alpha';
+
+    }
+
+    ftpSync.run();
+
+  });
 
 });
