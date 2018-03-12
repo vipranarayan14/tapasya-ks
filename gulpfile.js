@@ -141,16 +141,17 @@ gulp.task('build-pages', () => {
 
 });
 
-gulp.task('copy-others', function () {
+gulp.task('copy-others', () => {
+
+  const preservetime = require('gulp-preservetime');
 
   gulp.src('./prod/images/**/*')
-    .pipe(gulp.dest('./dist/images'));
+    .pipe(gulp.dest('./dist/images'))
+    .pipe(preservetime());
 
-  return gulp.src(
-    ['./prod/others/**/*'], {
-      dot: true
-    }
-  ).pipe(gulp.dest('./dist'));
+  return gulp.src(['./prod/others/**/*'], { dot: true })
+    .pipe(gulp.dest('./dist'))
+    .pipe(preservetime());
 
 });
 
