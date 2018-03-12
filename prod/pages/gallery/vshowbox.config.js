@@ -12,7 +12,7 @@ vShowBox({
       preview: 'images/gallery/preview/0002IMG-preview.jpg'
     },
     {
-      caption: 'Tapasya\'s first anniversary function;  Janardhanan felicitates Guru Kittappapillai.',
+      caption: 'Tapasya\'s first anniversary function;  Prof. Janardhanan felicitates Guru Kittappapillai.',
       content: 'images/gallery/slide/0004IMG-slide.jpg',
       preview: 'images/gallery/preview/0004IMG-preview.jpg'
     },
@@ -55,11 +55,6 @@ vShowBox({
       caption: 'Indu Varma at a Lec-Dem on rare Tanjore compositions.',
       content: 'images/gallery/slide/0011IMG-slide.jpg',
       preview: 'images/gallery/preview/0011IMG-preview.jpg'
-    },
-    {
-      caption: '',
-      content: 'images/gallery/slide/0001IMG-slide.jpg',
-      preview: 'images/gallery/preview/0001IMG-preview.jpg'
     },
     {
       caption: 'Tapasya Director Jayanthi Varma with Smt .Subhashini Vijay Santhanam, January 16th 2018, Chennai.',
