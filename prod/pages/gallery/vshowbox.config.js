@@ -57,7 +57,7 @@ vShowBox({
       preview: 'images/gallery/preview/0011IMG-preview.jpg'
     },
     {
-      caption: 'Tapasya Director Jayanthi Varma with Smt .Subhashini Vijay Santhanam, January 16th 2018, Chennai.',
+      caption: 'Tapasya Director Jayanthi Varma with Smt. Subhashini Vijay Santhanam, January 16th 2018, Chennai.',
       content: 'images/gallery/slide/DSC_0744-slide.jpg',
       preview: 'images/gallery/preview/DSC_0744-preview.jpg'
     },
@@ -67,7 +67,7 @@ vShowBox({
       preview: 'images/gallery/preview/DSC_0751-preview.jpg'
     },
     {
-      caption: 'Tapasya Director Jayanthi Varma with Sri Tiruvarur Girish',
+      caption: 'Tapasya Director Jayanthi Varma with Sri Tiruvarur Girish and Smt. Subhashini Vijay Santhanam',
       content: 'images/gallery/slide/DSC_0775-slide.jpg',
       preview: 'images/gallery/preview/DSC_0775-preview.jpg'
     },
@@ -77,17 +77,17 @@ vShowBox({
       preview: 'images/gallery/preview/DSC_0795-preview.jpg'
     },
     {
-      caption: 'Shewtha Raghavan',
+      caption: 'Kum. Shewtha Raghavan',
       content: 'images/gallery/slide/DSC_0816-slide.jpg',
       preview: 'images/gallery/preview/DSC_0816-preview.jpg'
     },
     {
-      caption: 'Shilpa Raghavan',
+      caption: 'Kum. Shilpa Raghavan',
       content: 'images/gallery/slide/DSC_0817-slide.jpg',
       preview: 'images/gallery/preview/DSC_0817-preview.jpg'
     },
     {
-      caption: 'Krithika Srinivasan',
+      caption: 'Kum. Krithika Srinivasan',
       content: 'images/gallery/slide/DSC_1098-slide.jpg',
       preview: 'images/gallery/preview/DSC_1098-preview.jpg'
     },
