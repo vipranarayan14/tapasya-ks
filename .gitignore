@@ -1,4 +1,5 @@
 /dist
 /extra-rsrcs
 /node_modules
+.env
 notes.txt
