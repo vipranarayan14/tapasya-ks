@@ -47,6 +47,11 @@
             "type": "gulp",
             "task": "watch",
             "problemMatcher": []
+        },
+        {
+            "type": "gulp",
+            "task": "deploy",
+            "problemMatcher": []
         }
     ]
 }
