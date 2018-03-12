@@ -4,7 +4,8 @@
   "description": "A site for Tapasya Kala Sampradaya",
   "scripts": {
     "gulp": "gulp",
-    "test": "eslint ."
+    "test": "eslint .",
+    "prepush": "gulp deploy"
   },
   "repository": {
     "type": "git",
