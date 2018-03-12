@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
+
 const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
 const rename = require('gulp-rename');
+const git = require('simple-git');
 
 require('dotenv').config();
 
@@ -74,9 +77,21 @@ const buildStyles = (src, dest) => {
 
 };
 
-const getCurrentBranch = () => new Promise(resolve => {
+const makeChangeLog = () => {
 
-  const git = require('simple-git');
+  const fs = require('fs');
+
+  git().raw(['log', '--pretty=format:"%aD [%h] %s"'], (err, result) => {
+
+    fs.writeFileSync('./dist/changelog.txt', result);
+
+    console.log('changelog generated.');
+
+  });
+
+};
+
+const getCurrentBranch = () => new Promise(resolve => {
 
   git().raw(['describe', '--contains', '--all', 'HEAD'], (err, result) => resolve(result));
 
@@ -203,6 +218,8 @@ gulp.task('deploy', () => {
     user: process.env.FTP_USER
 
   };
+
+  makeChangeLog();
 
   getCurrentBranch().then(branch => {
 
