@@ -12,32 +12,32 @@ vHashRouter.init({
     },
 
     {
-      hash: '#/the-organisation',
+      hash: '#/about/the-organisation',
       viewId: 'the-organisation'
     },
 
     {
-      hash: '#/our-objectives',
+      hash: '#/about/our-objectives',
       viewId: 'our-objectives'
     },
 
     {
-      hash: '#/the-director',
+      hash: '#/about/the-director',
       viewId: 'the-director'
     },
 
     {
-      hash: '#/research',
+      hash: '#/activities/research',
       viewId: 'research'
     },
 
     {
-      hash: '#/reconstruction',
+      hash: '#/activities/reconstruction',
       viewId: 'reconstruction'
     },
 
     {
-      hash: '#/current-projects',
+      hash: '#/activities/current-projects',
       viewId: 'current-projects'
     },
 
