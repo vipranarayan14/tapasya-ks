@@ -160,7 +160,7 @@ gulp.task('copy-others', () => {
 
   const preservetime = require('gulp-preservetime');
 
-  gulp.src('./prod/images/**/*')
+  gulp.src('./prod/images/processed/**/*')
     .pipe(gulp.dest('./dist/images'))
     .pipe(preservetime());
 
