@@ -61,7 +61,7 @@ const buildStyles = (src, dest) => {
 
     return;
 
-  }
+  };
 
   const cssnano = require('gulp-cssnano');
   const less = require('gulp-less');
@@ -136,7 +136,7 @@ gulp.task('build-html', () => {
 
 gulp.task('build-styles', () => {
 
-  buildStyles(`${paths.prod}/index.less`, './dist');
+  return buildStyles(`${paths.prod}/index.less`, './dist');
 
 });
 
@@ -198,9 +198,9 @@ gulp.task('start', () => {
 
 gulp.task('watch', ['start'], () => {
 
-  gulp.watch(`${paths.prod}/**/*.less`, ['build-styles']);
-  gulp.watch(`${paths.prod}/**/*.js`, ['build-scripts']);
-  gulp.watch(`${paths.prod}/**/*.html`, ['build-html']);
+  // gulp.watch(`${paths.prod}/**/*.less`, ['build-styles']);
+  // gulp.watch(`${paths.prod}/**/*.js`, ['build-scripts']);
+  // gulp.watch(`${paths.prod}/**/*.html`, ['build-html']);
 
   gulp.watch('./dist/*', browserSync.reload);
 
