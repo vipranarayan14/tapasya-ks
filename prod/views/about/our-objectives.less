@@ -1,28 +1,34 @@
 #our-objectives {
-  .banner {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-  .content {
-    ul {
-      width: 100%;
-      list-style: none inside;
-      padding-left: 0;
-      text-align: center;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      li {
-        .card;
-        border-radius: 5px;
-        max-width: 250px;
-        max-height: 250px;
-        flex: 1 1 auto;
-        margin: 5px;
-        padding: 10px;
-        background-color: @theme-200;
-      }
+    .banner {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
-  }
+    .content {
+        ul {
+            width: 100%;
+            list-style: none inside;
+            padding-left: 0;
+            text-align: center;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            li {
+                .card;
+                border-radius: 5px;
+                max-width: 250px;
+                max-height: 250px;
+                flex: 1 1 auto;
+                margin: 5px;
+                padding: 10px;
+                background-color: @theme-200;
+                .objectives-icon {
+                    height: 100px;
+                }
+                .icon-label {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
 }
