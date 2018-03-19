@@ -134,11 +134,11 @@ gulp.task('build-html', () => {
 
 });
 
-gulp.task('build-styles', () => {
+gulp.task('build-styles', () =>
 
-  return buildStyles(`${paths.prod}/index.less`, './dist');
+  buildStyles(`${paths.prod}/index.less`, './dist')
 
-});
+);
 
 gulp.task('build-pages', () => {
 
