@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
 const rename = require('gulp-rename');
@@ -77,25 +75,7 @@ const buildStyles = (src, dest) => {
 
 };
 
-const makeChangeLog = () => {
-
-  const fs = require('fs');
-
-  git().raw(['log', '--pretty=format:"%aD [%h] %s"'], (err, result) => {
-
-    fs.writeFileSync('./dist/changelog.txt', result);
-
-    console.log('changelog generated.');
-
-  });
-
-};
-
-const getCurrentBranch = () => new Promise(resolve => {
-
-  git().raw(['describe', '--contains', '--all', 'HEAD'], (err, result) => resolve(result));
-
-});
+const clog = msg => console.log(msg); /* eslint-disable-line no-console */
 
 const dirs = url => {
 
@@ -107,6 +87,26 @@ const dirs = url => {
       .statSync(path.join(url, f))
       .isDirectory()
     );
+
+};
+
+const getCurrentBranch = () => new Promise(resolve => {
+
+  git().raw(['rev-parse', '--abbrev-ref', 'HEAD'], (err, result) => resolve(result.trim()));
+
+});
+
+const makeChangeLog = () => {
+
+  const fs = require('fs');
+
+  git().raw(['log', '--pretty=format:"%aD [%h] %s"'], (err, result) => {
+
+    fs.writeFileSync('./dist/changelog.txt', result);
+
+    clog('changelog generated.');
+
+  });
 
 };
 
@@ -223,6 +223,8 @@ gulp.task('deploy', () => {
 
   getCurrentBranch().then(branch => {
 
+    clog(`In branch: '${branch}'`);
+
     if (branch === 'master' || branch === 'feature') {
 
       ftpSync.settings.remote = 'public_html';
@@ -232,6 +234,8 @@ gulp.task('deploy', () => {
       ftpSync.settings.remote = 'public_html_alpha';
 
     }
+
+    clog(`Deploying to remote directory: ${ftpSync.settings.remote}`);
 
     ftpSync.run();
 
