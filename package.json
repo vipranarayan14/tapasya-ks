@@ -5,7 +5,7 @@
   "scripts": {
     "gulp": "gulp",
     "test": "eslint .",
-    "prepush": "npm run test && gulp build && gulp deploy"
+    "prepush": "npm run test"
   },
   "repository": {
     "type": "git",
