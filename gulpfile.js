@@ -192,7 +192,7 @@ gulp.task('watch', ['start'], () => {
 
 gulp.task('deploy', () => {
 
-  getCurrentBranch.then(branch => {
+  getCurrentBranch().then(branch => {
 
     clog(`current git branch: ${branch}`);
 
