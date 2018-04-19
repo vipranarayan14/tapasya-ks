@@ -1,9 +1,7 @@
 const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
 const rename = require('gulp-rename');
-const git = require('simple-git');
-
-require('dotenv').config();
+const git = require('gulp-git');
 
 const paths = {
   pages: './prod/pages',
@@ -92,23 +90,9 @@ const dirs = url => {
 
 const getCurrentBranch = () => new Promise(resolve => {
 
-  git().raw(['rev-parse', '--abbrev-ref', 'HEAD'], (err, result) => resolve(result.trim()));
+  git.revParse({ args: '--abbrev-ref HEAD' }, (err, branch) => resolve(branch.trim()));
 
 });
-
-const makeChangeLog = () => {
-
-  const fs = require('fs');
-
-  git().raw(['log', '--pretty=format:"%aD [%h] %s"'], (err, result) => {
-
-    fs.writeFileSync('./dist/changelog.txt', result);
-
-    clog('changelog generated.');
-
-  });
-
-};
 
 gulp.task('build-clean', () => {
 
@@ -208,36 +192,29 @@ gulp.task('watch', ['start'], () => {
 
 gulp.task('deploy', () => {
 
-  const ftpSync = require('ftpsync');
+  getCurrentBranch.then(branch => {
 
-  ftpSync.settings = {
+    clog(`current git branch: ${branch}`);
 
-    host: process.env.FTP_HOST,
-    local: './dist',
-    pass: process.env.FTP_PASS,
-    user: process.env.FTP_USER
+    git.push('origin', branch, err => {
 
-  };
+      if (err) {
 
-  makeChangeLog();
+        throw err;
 
-  getCurrentBranch().then(branch => {
+      }
 
-    clog(`In branch: '${branch}'`);
+    });
 
-    if (branch === 'master' || branch === 'feature') {
+    git.push('server', branch, err => {
 
-      ftpSync.settings.remote = 'public_html';
+      if (err) {
 
-    } else {
+        throw err;
 
-      ftpSync.settings.remote = 'public_html_alpha';
+      }
 
-    }
-
-    clog(`Deploying to remote directory: ${ftpSync.settings.remote}`);
-
-    ftpSync.run();
+    });
 
   });
 
