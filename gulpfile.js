@@ -4,6 +4,7 @@ const rename = require('gulp-rename');
 const git = require('gulp-git');
 
 const paths = {
+  dist: '../tks-dist',
   pages: './prod/pages',
   prod: './prod'
 };
@@ -99,8 +100,12 @@ gulp.task('build-clean', () => {
   const del = require('del');
 
   return del(
-    ['./dist/**/*'], {
-      dot: true
+    [
+      `${paths.dist}/**/*`,
+      `!${paths.dist}`,
+      '!.git'
+    ], {
+      force: true
     }
   );
 
@@ -108,19 +113,19 @@ gulp.task('build-clean', () => {
 
 gulp.task('build-scripts', () => {
 
-  buildScripts(`${paths.prod}/scripts/*.js`, './dist');
+  buildScripts(`${paths.prod}/scripts/*.js`, paths.dist);
 
 });
 
 gulp.task('build-html', () => {
 
-  buildHtml(`${paths.prod}/index.html`, './dist');
+  buildHtml(`${paths.prod}/index.html`, paths.dist);
 
 });
 
 gulp.task('build-styles', () =>
 
-  buildStyles(`${paths.prod}/index.less`, './dist')
+  buildStyles(`${paths.prod}/index.less`, paths.dist)
 
 );
 
@@ -128,7 +133,7 @@ gulp.task('build-pages', () => {
 
   dirs(paths.pages).forEach(dir => {
 
-    const dest = `dist/pages/${dir}`;
+    const dest = `${paths.dist}/pages/${dir}`;
 
     buildScripts(`${paths.pages}/${dir}/*.js`, dest);
 
@@ -145,11 +150,11 @@ gulp.task('copy-others', () => {
   const preservetime = require('gulp-preservetime');
 
   gulp.src('./prod/images/processed/**/*')
-    .pipe(gulp.dest('./dist/images'))
+    .pipe(gulp.dest(`${paths.dist}/images`))
     .pipe(preservetime());
 
   return gulp.src(['./prod/others/**/*'], { dot: true })
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest(paths.dist))
     .pipe(preservetime());
 
 });
@@ -174,7 +179,7 @@ gulp.task('start', () => {
 
   browserSync.init({
     server: {
-      baseDir: 'dist'
+      baseDir: paths.dist
     }
   });
 
@@ -186,7 +191,7 @@ gulp.task('watch', ['start'], () => {
   // gulp.watch(`${paths.prod}/**/*.js`, ['build-scripts']);
   // gulp.watch(`${paths.prod}/**/*.html`, ['build-html']);
 
-  gulp.watch('./dist/*', browserSync.reload);
+  gulp.watch(`${paths.dist}/*`, browserSync.reload);
 
 });
 
