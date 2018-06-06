@@ -4,7 +4,7 @@ const rename = require('gulp-rename');
 const git = require('gulp-git');
 
 const paths = {
-  dist: '../tks-dist',
+  dist: './dist',
   pages: './prod/pages',
   prod: './prod'
 };
