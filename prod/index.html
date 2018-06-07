@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  @@include('addons/meta-data.html')
+  
+  <%- include('./addons/meta-data.html') %>
 
   <title>Tapasya Kala Sampradaya</title>
 
@@ -12,29 +13,27 @@
 
 <body>
 
-  @@include('views/loader/loader.html')
+  <%- include('./views/loader/loader.html') %>
 
   <div class="views-container">
 
-    @@include('views/header/header.html')
+    <%- include('./views/header/header.html') %>
 
     <main>
 
-      @@include('views/home/home.html') 
-      @@include('views/about/about.html') 
-      @@include('views/activities/activities.html') 
-      @@include('views/gallery/gallery.html')
-      @@include('views/events/events.html') 
-      @@include('views/contact/contact.html')
+      <%- include('./views/home/home.html')  %>
+      <%- include('./views/about/about.html')  %>
+      <%- include('./views/activities/activities.html')  %>
+      <%- include('./views/gallery/gallery.html') %>
+      <%- include('./views/events/events.html')  %>
+      <%- include('./views/contact/contact.html') %>
 
     </main>
 
-    @@include('views/footer/footer.html')
+    <%- include('./views/footer/footer.html') %>
 
   </div>
 
-  <link href="styles.min.css" rel="stylesheet">
-  <script src="scripts.min.js"></script>
 </body>
 
 </html>
