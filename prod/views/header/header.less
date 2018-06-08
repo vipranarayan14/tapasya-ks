@@ -1,17 +1,14 @@
-header {
+.tks-header {
   .card;
   position: relative;
   z-index: 10;
-
   a {
     text-decoration: none;
   }
-
   .logo {
     background-color: white;
     background-image: url('/images/logo/tkslogo-128.jpg');
     background-repeat: no-repeat;
-
     .logo-text {
       color: @theme-600;
       font-family: Montserrat;
@@ -20,37 +17,30 @@ header {
       padding: 0;
     }
   }
-
-  nav {
+  .tks-nav {
     .navLink.hr-active-hash {
       background-color: @theme-A900;
       color: #fff;
     }
-
     ul {
       list-style-type: none;
       padding: 0;
-
       li a,
       .p-dropdown .p-dropdown-btn {
         .button;
         transition: background-color 0.5s ease-out;
-
         img {
           margin-bottom: -5px;
         }
       }
-
       li a:hover,
       .p-dropdown:hover .p-dropdown-btn {
         background-color: #d0cdcd;
         transition: background-color 0.5s ease-out;
       }
-
       .p-dropdown-content a:not(.hr-active-hash):hover {
         background-color: #d6d4d4;
       }
-
       .p-dropdown .p-dropdown-btn:after {
         content: "";
         background-image: url('/images/main/icons/sprite.png');
@@ -63,7 +53,7 @@ header {
 }
 
 @media only screen and (max-width: (@screen-break-point - 450)) {
-  header {
+  .tks-header {
     .logo {
       .logo-text {
         font-size: 16px;
@@ -73,18 +63,15 @@ header {
 }
 
 @media only screen and (max-width: @screen-break-point) {
-
-  header {
+  .tks-header {
     height: @small-header-ht;
     min-height: @small-header-ht;
     width: 100%;
-
     .logo {
       height: 100%;
       background-size: @small-header-ht @small-header-ht;
       background-position: 10px center;
       padding: 10px 0;
-
       .menu-icon {
         float: right;
         margin-right: 17px;
@@ -95,24 +82,20 @@ header {
         .icons.nav;
         .icons.nav.menu;
         transition: background-image 0.2s ease-in;
-
         &:hover {
           background-color: #f1f1f1;
         }
       }
-
       .logo-text {
         margin-left: (10 + @small-header-ht + 2);
         display: inline-block;
       }
     }
-
-    nav {
+    .tks-nav {
       height: 100%;
       width: 100%;
       display: none;
       overflow-y: auto;
-
       ul {
         margin-bottom: 80px; // For "Contact" Item to be visible.
         li {
@@ -120,12 +103,10 @@ header {
           background-color: #f1f1f1;
           background-color: rgba(241, 241, 241, 0.4);
         }
-
         li a,
         .p-dropdown .p-dropdown-btn {
           display: block;
         }
-
         .p-dropdown:not(.open) {
           .p-dropdown-content {
             display: none;
@@ -134,23 +115,19 @@ header {
       }
     }
   }
-
-  header.nav-open {
+  .tks-header.nav-open {
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.8);
-
     .logo {
       height: @small-header-ht;
       .card;
     }
-
-    nav {
+    .tks-nav {
       .animate-top;
       position: relative;
       z-index: -1;
       display: block;
     }
-
     .menu-icon {
       .icons.nav;
       .icons.nav.close;
@@ -160,45 +137,37 @@ header {
 }
 
 @media only screen and (min-width: @screen-break-point) {
-
-  header {
+  .tks-header {
     padding: 0.01em 16px;
     background-color: #fff;
     align-items: center;
     display: flex;
     justify-content: space-between;
     height: @large-header-ht;
-
     .logo {
       align-items: center;
       background-size: @large-header-ht @large-header-ht;
       display: inline-flex;
       height: 100%;
       padding: 0;
-
       .logo-text {
         margin-left: (@large-header-ht + 2);
       }
     }
-
     .menu-icon {
       display: none;
     }
-
-    nav {
+    .tks-nav {
       ul {
         margin: 0;
         overflow: hidden;
-
         li {
           float: left;
           margin: 0 2px;
         }
-
         .p-dropdown {
           display: inline-block;
         }
-
         .p-dropdown-content {
           .card-4;
           display: block;
@@ -212,13 +181,11 @@ header {
           margin: 0;
           padding: 0;
         }
-
         .p-dropdown-content a {
           padding: 12px 16px;
           display: block;
           text-align: left;
         }
-
         .p-dropdown:hover .p-dropdown-content {
           display: block;
         }
