@@ -7,13 +7,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 
-const entry = './prod/';
-const filename = 'scripts.[chunkhash:4].js';
-
 const config = () => ({
-  entry,
+  entry: {
+    'assets/': './prod/',
+    'pages/events/': './prod/pages/events',
+    'pages/gallery/': './prod/pages/gallery'
+  },
   output: {
-    filename,
+    filename: '[name]scripts.min.js',
     path: path.resolve(`${__dirname}/dist`),
   },
   mode: 'production',
@@ -52,7 +53,7 @@ const config = () => ({
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.[chunkhash:4].css'),
+    new ExtractTextPlugin('[name]styles.min.css'),
     new UglifyJsPlugin(),
     new CopyWebpackPlugin([{
       from: 'prod/images/processed/',
@@ -67,8 +68,19 @@ const config = () => ({
         minifyCSS: true,
         minifyJS: true
       },
-      hash: true
+      hash: true,
+      chunks: ['assets/']
     }),
+    new HtmlWebpackPlugin({
+      template: 'prod/pages/events/index.html',
+      filename: 'pages/events/index.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: 'prod/pages/gallery/index.html',
+      filename: 'pages/gallery/index.html',
+      inject: false,
+    })
   ]
 });
 
