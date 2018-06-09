@@ -9,9 +9,9 @@ const path = require('path');
 
 const config = () => ({
   entry: {
-    'assets/': './prod/',
-    'pages/events/': './prod/pages/events',
-    'pages/gallery/': './prod/pages/gallery'
+    'assets/': './src/',
+    'pages/events/': './src/pages/events',
+    'pages/gallery/': './src/pages/gallery'
   },
   output: {
     filename: '[name]scripts.min.js',
@@ -56,11 +56,11 @@ const config = () => ({
     new ExtractTextPlugin('[name]styles.min.css'),
     new UglifyJsPlugin(),
     new CopyWebpackPlugin([{
-      from: 'prod/images/processed/',
+      from: 'src/images/processed/',
       to: 'images/'
     }]),
     new HtmlWebpackPlugin({
-      template: '!!html-loader!!ejs-html-loader!prod/index.html',
+      template: '!!html-loader!!ejs-html-loader!src/index.html',
       filename: 'index.html',
       minify: {
         collapseWhitespace: true,
@@ -72,12 +72,12 @@ const config = () => ({
       chunks: ['assets/']
     }),
     new HtmlWebpackPlugin({
-      template: 'prod/pages/events/index.html',
+      template: 'src/pages/events/index.html',
       filename: 'pages/events/index.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
-      template: 'prod/pages/gallery/index.html',
+      template: 'src/pages/gallery/index.html',
       filename: 'pages/gallery/index.html',
       inject: false,
     })
