@@ -1,0 +1,15 @@
+cd cerbot
+
+virtualenv venv
+
+venv/bin/python setup.py install
+
+mkdir -p ~/.le/etc ~/.le/var/lib ~/.le/var/log
+
+venv/bin/certbot certonly --text -d  tapasyaks.org -d www.tapasyaks.org -d alpha.tapasyaks.org --keep-until-expiring \
+--agree-tos --config-dir ~/.le/etc --work-dir ~/.le/var/lib --logs-dir \
+~/.le/var/log --manual
+
+venv/bin/certbot renew --config-dir ~/.le/etc --work-dir ~/.le/var/lib --logs-dir ~/.le/var/log
+
+copy cert.pem and privkey.pem to cpanel/ssl-tsl/manage_ssl/.
