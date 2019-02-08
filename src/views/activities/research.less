@@ -2,22 +2,33 @@
   .banner {
     background-position: center center;
   }
-  .video-container {
-    text-align: center;
-    float: none;
-    clear: both;
-    width: 100%;
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 25px;
-    height: 0;
 
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+  .video-container {
+    margin: 0 0 20px 20px;
+    float: right;
+  }
+}
+
+@media only screen and (max-width: @screen-break-point) {
+  #research {
+    .video-container {
+      text-align: center;
+      float: none;
+      clear: both;
       width: 100%;
-      height: 100%;
+      position: relative;
+      margin: 0;
+      padding-bottom: 56.25%;
+      padding-top: 25px;
+      height: 0;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
