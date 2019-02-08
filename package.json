@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A site for Tapasya Kala Sampradaya",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.server",
+    "start": "webpack-dev-server",
     "build": "rimraf dist && webpack",
     "test": "eslint .",
     "prepush": "npm run test"
