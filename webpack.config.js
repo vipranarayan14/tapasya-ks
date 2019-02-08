@@ -52,6 +52,13 @@ const config = () => ({
 
     ]
   },
+  devServer: {
+    compress: true,
+    host: '0.0.0.0',
+    hot: true,
+    open: true,
+    port: 3000,
+  },
   plugins: [
     new ExtractTextPlugin('[name]styles.min.css'),
     new UglifyJsPlugin(),
